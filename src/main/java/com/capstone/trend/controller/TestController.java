@@ -1,6 +1,6 @@
 package com.capstone.trend.controller;
 
-import com.capstone.trend.dto.FormDto;
+import com.capstone.trend.dto.TestDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +14,13 @@ public class TestController {
 
     @GetMapping("/form")
     public String showForm(Model model){
-        model.addAttribute("form", new FormDto());
-        return "review/form";
+        model.addAttribute("form", new TestDto());
+        return "review/test";
     }
 
     @PostMapping("/form")
-    public String form(@ModelAttribute("form") FormDto formDto){
+    public String form(@ModelAttribute("form") TestDto testDto){
 
-        return "review/form";
+        return "review/test";
     }
 }

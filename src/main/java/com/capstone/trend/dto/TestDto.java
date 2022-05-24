@@ -4,6 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class FormDto {
+public class TestDto {
     private String name;
 }
