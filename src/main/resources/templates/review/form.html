@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+  <div class="py-4 text-center">
+    <h2>Test Form</h2>
+  </div>
+
+  <form th:action th:object="${form}" method="post">
+    <div>
+      <label for="name">이름</label>
+      <input type="text" id="name" th:field="*{name}" class="form-control">
+    </div>
+
+    <button class="btn-primary" type="submit">전송</button>
+  </form>
+</div>
+</body>
+</html>

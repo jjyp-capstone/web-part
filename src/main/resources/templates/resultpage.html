@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultpage</title>
+</head>
+<body>
+<div th:text="${keyword.keyword}">result</div>
+<a th:href ="@{https://www.youtube.com/results(search_query=${keyword.keyword})}">youtube</a>
+
+</body>
+</html>
