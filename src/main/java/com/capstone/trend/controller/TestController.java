@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
 
     @GetMapping("/form")
-    public String showForm(Model model){
+    public String get(Model model){
         model.addAttribute("form", new TestDto());
         return "review/test";
     }
 
     @PostMapping("/form")
-    public String form(@ModelAttribute("form") TestDto testDto){
+    public String post(@ModelAttribute("form") String teststring){
 
         return "review/test";
     }

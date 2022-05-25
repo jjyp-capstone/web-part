@@ -6,6 +6,11 @@
 </head>
 <body>
 <div th:text="${keyword.keyword}">result</div>
+
+<div th:text="${keyword.title}">crawl_result</div>
+
+<a th:href="@{${keyword.URL}}"><div th:text="${keyword.title}"></div></a>
+
 <a th:href ="@{https://www.youtube.com/results(search_query=${keyword.keyword})}">youtube result</a>
 
 </body>

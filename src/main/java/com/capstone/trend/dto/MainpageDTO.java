@@ -7,4 +7,6 @@ import lombok.Setter;
 @Setter
 public class MainpageDTO {
     private String keyword;
+    private String URL;
+    private String title;
 }
