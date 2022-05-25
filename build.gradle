@@ -29,6 +29,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	implementation 'org.jsoup:jsoup:1.14.3'
+
+	// https://mvnrepository.com/artifact/com.google.apis/google-api-services-youtube
+	implementation 'com.google.apis:google-api-services-youtube:v3-rev222-1.25.0'
+
 }
 
 tasks.named('test') {
