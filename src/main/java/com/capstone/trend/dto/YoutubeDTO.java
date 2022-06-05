@@ -9,12 +9,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class YoutubeDTO {
+    private String keyword;
     private String title;
     private String thumbnailPath;
     private String videoId;
 
     @Builder(toBuilder = true)
-    public YoutubeDTO(String title, String thumbnailPath, String videoId){
+    public YoutubeDTO(String keyword, String title, String thumbnailPath, String videoId){
+        this.keyword = keyword;
         this.title = title;
         this.thumbnailPath = thumbnailPath;
         this.videoId = videoId;

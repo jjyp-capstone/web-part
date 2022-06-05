@@ -5,13 +5,28 @@
     <title>Resultpage</title>
 </head>
 <body>
-<div th:text="${keyword.keyword}">result</div>
+<h1>keyword</h1>
+<div th:text="${mainpage.keyword}">keyword</div>
+<h1>title</h1>
+<div th:text="${mainpage.newstitle}">news title</div>
+<h1>title and link</h1>
+<a th:href="@{${mainpage.newsURL}}"><div th:text="${mainpage.newstitle}"></div></a>
 
-<div th:text="${keyword.title}">crawl_result</div>
+<h1>youtube</h1>
+<table>
+    <thead>
+    <tr>
+        <th>youtube id</th>
+        <th>youtube title</th>
+    </tr>
+    </thead>
 
-<a th:href="@{${keyword.URL}}"><div th:text="${keyword.title}"></div></a>
-
-<a th:href ="@{https://www.youtube.com/results(search_query=${keyword.keyword})}">youtube result</a>
-
+    <tbody>
+    <tr th:each = "m: ${mainpage}">
+        <td th:text = "${m.youtubeid}"></td>
+        <td th:text = "${m.youtubetitle}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
