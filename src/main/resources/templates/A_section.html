@@ -2,16 +2,69 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/style.css}" rel="stylesheet" />
-    <!-- Bootstrap CSS 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    -->
+    <!--anychart-->
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-pie.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
+
     <title>Tech Trend Analysis</title>
 </head>
 <body>
+    <script th:inline="javascript">
+        anychart.onDocumentReady(function () {
+
+            // create data
+            var data = [
+            {x: "MONSANTO TECHNOLOGY LLC", value: 1010,
+                normal:   {
+                    fill: "#5cd65c",
+                    stroke: null,
+                    label: {enabled: true}
+                    },
+                hovered:  {
+                    fill: "#5cd65c",
+                    stroke: null,
+                    label: {enabled: true}
+                    },
+                selected: {
+                    fill: "#5cd65c",
+                    stroke: null,
+                    label: {enabled: true}
+                    }
+            },
+            {x: "CNH Industrial America LLC", value: 649},
+            {x: "PIONEER HI-BRED INTERNATIONAL, INC.", value: 643},
+            {x: "DEERE & COMPANY", value: 640},
+            {x: "M.S. TECHNOLOGIES, L.L.C.", value: 321},
+            {x: "개인출원인", value: 289},
+            {x: "Seminis Vegetable Seeds, Inc.", value: 230},
+            {x: "SYNGENTA PARTICIPATIONS AG", value: 228},
+            {x: "CNH Industrial Canada, Ltd.", value: 172},
+            {x: "Agrigenetics, Inc.", value: 171}
+            ];
+
+            // create a chart
+            var chart = anychart.bar();
+
+            // create a bar series and set the data
+            var series = chart.bar(data);
+
+            // set the chart title
+            //chart.title("Bar Chart: Appearance (Individual Points)");
+
+            // set the titles of the axes
+            chart.xAxis().title("출원회사");
+            chart.yAxis().title("특허수, 개");
+
+            // set the container id
+            chart.container("container_bar");
+
+            // initiate drawing the chart
+            chart.draw();
+            });
+    </script>
+
     <!--header(사이트 이름)-->
     <div id="trend_header">
         <p id="title">Technology Trend Analysis</p>
@@ -150,6 +203,12 @@
 
                             </tbody>
                         </table>
+                    </div>
+                    <br><br><br><br><br>
+                    <div id="section_bar">
+                        <h1 id="section_0">&nbsp&nbsp 최다출원회사 TOP 10 &nbsp&nbsp</h1>
+                        <br><br>
+                        <div id="container_bar" style="width: 90%; height: 100%; "></div>
                     </div>
 
                 </div>

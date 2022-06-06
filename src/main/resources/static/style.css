@@ -236,7 +236,7 @@ ol.mylist li:hover {
     height: 700px;
 }
 
-#keyword {
+#keyword_ {
     margin-top: 200px;
 }
 
@@ -248,7 +248,7 @@ ol.mylist li:hover {
     margin-left: 250px;
     margin-top: 50px;
     margin-right: 20px;
-    margin-bottom: 300px;
+    margin-bottom: 100px;
     border-style: groove;
     height: 700px;
     width: 600px;
@@ -316,4 +316,8 @@ tr, td {
 #section_1 {
     font-size: 20px;
     margin-right: 120px;
+}
+
+#section_bar {
+    height: 500px;
 }

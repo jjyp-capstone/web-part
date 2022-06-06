@@ -70,11 +70,43 @@
         <div id="key_detail" >
             <div style="display: flex; margin-left: 200px; margin-right: 20px;">
                 <div id="keyword_detail">
-                    <div id="de_news">
-                        관련 기사
+                    <div id="de_news" style="display: none;">
+                        <h1>keyword</h1>
+                        <div th:text="${mainpage.keyword}">keyword</div>
+                        <h1>title</h1>
+                        <div th:text="${mainpage.newstitle}">news title</div>
+                        <h1>title and link</h1>
+                        <a th:href="@{${mainpage.newsURL}}"><div th:text="${mainpage.newstitle}"></div></a>
                     </div>
-                    <div id="de_YOUTUBE">
-                        관련 YOUTUBE
+                    <div id="de_news">
+                        <h2>추천 기사</h2>
+                        <a th:href="@{${mainpage.newsURL}}"><div th:text="${mainpage.newstitle}"></div></a>
+                    </div>
+                    
+                    <div id="de_YOUTUBE" >
+                        <h1>youtube</h1>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>youtube id</th>
+                                <th>youtube title</th>
+                                <th>youtube 링크</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="m: ${youtube_id}">
+                                <td th:text="${m.youtubeid}">id</td>
+                                <td th:text="${m.youtubetitle}">title</td>
+                                <td>
+                                    <h2>추천 영상</h2>
+                                    <a th:href="@{'https://www.youtube.com/watch?v='+ ${m.youtubeid[0]}}" ><p th:text="${m.youtubetitle[0]}"></p></a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        
                     </div>
                 </div>
                 

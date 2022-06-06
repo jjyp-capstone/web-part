@@ -9,10 +9,6 @@
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-pie.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
-    <!-- Bootstrap CSS 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    -->
     
 </head>
 <body>
@@ -213,8 +209,10 @@
                 chart.legend(true);
 
                 // set the titles of the axes
-                chart.xAxis().title("Year");
-                chart.yAxis().title("Sales, $");
+                //chart.xAxis().title("Year");
+                //chart.yAxis().title("Sales, $")
+                chart.xAxis().enabled(false);
+                chart.yAxis().enabled(false);
 
                 // set the container id
                 chart.container("container_bubble");
