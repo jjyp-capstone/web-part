@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/style.css}" rel="stylesheet" />
+    <!-- Bootstrap CSS 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    -->
+    <title>Tech Trend Analysis</title>
+</head>
+<body>
+    <!--header(사이트 이름)-->
+    <div id="trend_header">
+        <p id="title">Technology Trend Analysis</p>
+    </div>
+    <div>
+        <!--사이드바-->
+        <div class="left-side-bar">
+            <div class="status-ico">
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"/>
+                  </svg></span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z"/>
+                  </svg></span>
+            </div>
+    
+            <ul>
+                <li>  </li>
+                <li>
+                    <a th:href="@{/home}">Home</a>
+                </li>
+                <li>
+                    <a href="#">IPC분류</a>
+                    <ul>
+                        <li><a th:href="@{/A_section}">A Section</a></li>
+                        <li><a th:href="@{/B_section}">B Section</a></li>
+                        <li><a th:href="@{/C_section}">C Section</a></li>
+                        <li><a th:href="@{/D_section}">D Section</a></li>
+                        <li><a th:href="@{/E_section}">E Section</a></li>
+                        <li><a th:href="@{/F_section}">F Section</a></li>
+                        <li><a th:href="@{/G_section}">G Section</a></li>
+                        <li><a th:href="@{/H_section}">H Section</a></li>
+                        <li><a th:href="@{/Y_section}">Y Section</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="A_main" >
+            <div style="display: flex; margin-left: 450px; margin-right: 100px;">
+                <div id="A_section">
+                    <div>
+                        <div id="section_0">
+                            &nbsp&nbsp IPC 분류 &nbsp&nbsp
+                        </div>
+                        <p id="section_1">IPC(International Patent Classification, 국제특허분류)는 발명의 기술분야를 나타내는 국제적으로 통일된 특허분류체계로, 
+                            특허청은 특허문헌의 분류, 검색을 용이하게 하도록 국내의 모든 출원건에 대하여 IPC를 부여하고 있다.</p>
+                    </div>
+                    <br><br><br>
+                    <div>
+                        <h1 id="section_0">&nbsp&nbsp A Section : 생활필수품 &nbsp&nbsp</h1>
+                        <br><br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>코드</td>
+                                    <td id="script_col">설명</td>                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 농업</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A01</td>
+                                    <td>농업; 임업; 축산; 수렵; 포획; 어업</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 식품, 담배</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A21</td>
+                                    <td>제빵；반죽 제조 또는 가공의 기계 혹은 설비；제빵용 반죽</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A22</td>
+                                    <td>도살; 육(肉) 처리; 가금류 또는 어류의 가공</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A23</td>
+                                    <td>다른 클래스에 속하지 않는 그것들의 처리; 식품 또는 식료품</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A24</td>
+                                    <td>담배; 엽권담배; 지권담배; 가상 흡연장치; 흡연자 용구</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 개인 또는 가정용품</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A41</td>
+                                    <td>의류</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A42</td>
+                                    <td>두의</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A43</td>
+                                    <td>신발류</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A44</td>
+                                    <td>장신구류; 귀금속 보석류</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A45</td>
+                                    <td>소지품 또는 여행용품</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A46</td>
+                                    <td>브러시류</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A47</td>
+                                    <td>가구; 가정용품 또는 가정용 설비; 커피 빻는 기구; 향신료 빻는 기구; 진공청소기 일반</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 건강; 인명구조; 놀이</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A61</td>
+                                    <td>위생학; 의학 또는 수의학</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A62</td>
+                                    <td>인명구조; 소방</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A63</td>
+                                    <td>운동; 놀이; 오락;</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">A99</td>
+                                    <td>이 섹션 중에서 그 밖에 분류되지 않는 주제 사항</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                
+            </div>
+            
+        </div>
+        <div style="height: 200px;">
+
+        </div>
+        
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/style.css}" rel="stylesheet" />
+    <!-- Bootstrap CSS 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    -->
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
+    <title>Tech Trend Analysis</title>
+</head>
+<body>
+    <script th:inline="javascript">
+        anychart.onDocumentReady(function () { 
+            var data1 = {};
+            var dataArray = [];
+            [# th:each="Posts : ${list}"]           //반복문으로 리스트 값 받아오기
+                data1.x = [[${Posts.keyword}]];     //변수 받기
+                data1.value = [[${Posts.weight}]];
+                dataArray.push({...data1});         //json형식으로 데이터 추가하기 위해서
+                //console.log(JSON.stringify(dataArray));
+            [/]
+
+            var chart = anychart.tagCloud(dataArray); 
+            chart.angles([0]); 
+            chart.container("container"); 
+            //chart.getCredits().setEnabled(false); 
+            //chart.colorRange().enabled(true);
+
+            // add an event listener to open a url on click
+            chart.listen("pointClick", function(e){
+            //var url = "//en.wiktionary.org/wiki/" + e.point.get("x");
+            //window.open(url, "_blank");
+            var url = "/keyword_detail" ;//+ e.point.get("x");
+            window.location.href=url;
+
+            });
+
+            chart.draw(); 
+        });
+    </script>
+    <!--header(사이트 이름)-->
+    <div id="trend_header">
+        <p id="title">Technology Trend Analysis</p>
+    </div>
+    <div>
+        <!--사이드바-->
+        <div class="left-side-bar">
+            <div class="status-ico">
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"/>
+                  </svg></span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z"/>
+                  </svg></span>
+            </div>
+    
+            <ul>
+                <li>  </li>
+                <li>
+                    <a th:href="@{/home}">Home</a>
+                </li>
+                <li>
+                    <a href="#">IPC분류</a>
+                    <ul>
+                        <li><a th:href="@{/A_section}">A Section</a></li>
+                        <li><a th:href="@{/B_section}">B Section</a></li>
+                        <li><a th:href="@{/C_section}">C Section</a></li>
+                        <li><a th:href="@{/D_section}">D Section</a></li>
+                        <li><a th:href="@{/E_section}">E Section</a></li>
+                        <li><a th:href="@{/F_section}">F Section</a></li>
+                        <li><a th:href="@{/G_section}">G Section</a></li>
+                        <li><a th:href="@{/H_section}">H Section</a></li>
+                        <li><a th:href="@{/Y_section}">Y Section</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="key_main" >
+            <div id="div_key" style="display: flex; margin-left: 450px; margin-right: 100px;">
+                <div id="keyword">
+                    <div class="chart-area" style="margin-top: 50px; text-align: center;"> 
+                        <div id="container" style="width:500%; height:600px; display: block; margin: auto;"></div> 
+                        <br/>
+                        <br/>
+                        <h4>Trend WordCloud</h4>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+        
+    </div>
+    
+    
+</body>
+</html>

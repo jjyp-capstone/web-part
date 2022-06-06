@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/style.css}" rel="stylesheet" />
+    <!-- Bootstrap CSS 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    -->
+    <title>Tech Trend Analysis</title>
+</head>
+<body>
+    <!--header(사이트 이름)-->
+    <div id="trend_header">
+        <p id="title">Technology Trend Analysis</p>
+    </div>
+    <div>
+        <!--사이드바-->
+        <div class="left-side-bar">
+            <div class="status-ico">
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"/>
+                  </svg></span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z"/>
+                  </svg></span>
+            </div>
+    
+            <ul>
+                <li>  </li>
+                <li>
+                    <a th:href="@{/home}">Home</a>
+                </li>
+                <li>
+                    <a href="#">IPC분류</a>
+                    <ul>
+                        <li><a th:href="@{/A_section}">A Section</a></li>
+                        <li><a th:href="@{/B_section}">B Section</a></li>
+                        <li><a th:href="@{/C_section}">C Section</a></li>
+                        <li><a th:href="@{/D_section}">D Section</a></li>
+                        <li><a th:href="@{/E_section}">E Section</a></li>
+                        <li><a th:href="@{/F_section}">F Section</a></li>
+                        <li><a th:href="@{/G_section}">G Section</a></li>
+                        <li><a th:href="@{/H_section}">H Section</a></li>
+                        <li><a th:href="@{/Y_section}">Y Section</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="A_main" >
+            <div style="display: flex; margin-left: 450px; margin-right: 100px;">
+                <div id="A_section">
+                    <div>
+                        <div id="section_0">
+                            &nbsp&nbsp IPC 분류 &nbsp&nbsp
+                        </div>
+                        <p id="section_1">IPC(International Patent Classification, 국제특허분류)는 발명의 기술분야를 나타내는 국제적으로 통일된 특허분류체계로, 
+                            특허청은 특허문헌의 분류, 검색을 용이하게 하도록 국내의 모든 출원건에 대하여 IPC를 부여하고 있다.</p>
+                    </div>
+                    <br><br><br>
+                    <div>
+                        <h1 id="section_0">&nbsp&nbsp E Section : 고정구조물 &nbsp&nbsp</h1>
+                        <br><br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>코드</td>
+                                    <td id="script_col">설명</td>                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 건설</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">E01</td>
+                                    <td>도로, 철도 또는 교량의 건설</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">E02</td>
+                                    <td>토사(土砂)의 이송(移送); 기초; 수공(水工)</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">E03</td>
+                                    <td>상수(上水); 하수(下水)</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">E04</td>
+                                    <td>건축물</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">E05</td>
+                                    <td>자물쇠; 열쇠; 창(窓) 및 문(門)의 부속품; 금고(金庫)</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">E06</td>
+                                    <td>도어, 창(窓), 셔터 또는 롤러 블라인드 일반; 사다리</td>
+                                </tr>                                                          
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 지표굴착 또는 착암; 채광</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">E21</td>
+                                    <td>지표 또는 암석의 굴착(掘鑿); 채광(採鑛)</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">E99</td>
+                                    <td>이 섹션에서 그 밖에 분류되지 않는 주제 사항</td>
+                                </tr>                            
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                
+            </div>
+            
+        </div>
+        <div style="height: 200px;">
+
+        </div>
+        
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/style.css}" rel="stylesheet" />
+    <!-- Bootstrap CSS 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    -->
+    <title>Tech Trend Analysis</title>
+</head>
+<body>
+    <!--header(사이트 이름)-->
+    <div id="trend_header">
+        <p id="title">Technology Trend Analysis</p>
+    </div>
+    <div>
+        <!--사이드바-->
+        <div class="left-side-bar">
+            <div class="status-ico">
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"/>
+                  </svg></span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z"/>
+                  </svg></span>
+            </div>
+    
+            <ul>
+                <li>  </li>
+                <li>
+                    <a th:href="@{/home}">Home</a>
+                </li>
+                <li>
+                    <a href="#">IPC분류</a>
+                    <ul>
+                        <li><a th:href="@{/A_section}">A Section</a></li>
+                        <li><a th:href="@{/B_section}">B Section</a></li>
+                        <li><a th:href="@{/C_section}">C Section</a></li>
+                        <li><a th:href="@{/D_section}">D Section</a></li>
+                        <li><a th:href="@{/E_section}">E Section</a></li>
+                        <li><a th:href="@{/F_section}">F Section</a></li>
+                        <li><a th:href="@{/G_section}">G Section</a></li>
+                        <li><a th:href="@{/H_section}">H Section</a></li>
+                        <li><a th:href="@{/Y_section}">Y Section</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="A_main" >
+            <div style="display: flex; margin-left: 450px; margin-right: 100px;">
+                <div id="A_section">
+                    <div>
+                        <div id="section_0">
+                            &nbsp&nbsp IPC 분류 &nbsp&nbsp
+                        </div>
+                        <p id="section_1">IPC(International Patent Classification, 국제특허분류)는 발명의 기술분야를 나타내는 국제적으로 통일된 특허분류체계로, 
+                            특허청은 특허문헌의 분류, 검색을 용이하게 하도록 국내의 모든 출원건에 대하여 IPC를 부여하고 있다.</p>
+                    </div>
+                    <br><br><br>
+                    <div>
+                        <h1 id="section_0">&nbsp&nbsp G Section : 물리학 &nbsp&nbsp</h1>
+                        <br><br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>코드</td>
+                                    <td id="script_col">설명</td>                                
+                                </tr>
+                            </thead>
+                            <tbody>                                
+                                <tr>
+                                    <td id="code_col">G01</td>
+                                    <td>측정; 시험</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G02</td>
+                                    <td>광학</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G03</td>
+                                    <td>전자사진; 광파 이외의 파를 사용하는 유사기술; 영화; 사진; 홀로그래피(Holography)</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G04</td>
+                                    <td>시계 제작</td>
+                                </tr>                                
+                                <tr>
+                                    <td id="code_col">G05</td>
+                                    <td>제어; 조정</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G06</td>
+                                    <td>전산; 계산 또는 계수</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G07</td>
+                                    <td>검사장치</td>
+                                </tr>                                                            
+                                <tr>
+                                    <td id="code_col">G08</td>
+                                    <td>신호</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G09</td>
+                                    <td>교육; 암호방법; 전시; 광고; 봉인</td>
+                                </tr>      
+                                <tr>
+                                    <td id="code_col">G10</td>
+                                    <td>악기; 음향</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G11</td>
+                                    <td>정보저장</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G12</td>
+                                    <td>기계의 세부</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G16</td>
+                                    <td>특정의 용도 분야에 특히 적합한 정보통신기술 [ICT]</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G21</td>
+                                    <td>핵공학</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">G99</td>
+                                    <td>이 섹션 내에서 그 밖에 분류되지 않는 주제사항</td>
+                                </tr>                                                  
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                
+            </div>
+            
+        </div>
+        <div style="height: 200px;">
+
+        </div>
+        
+    </div>
+    
+    
+</body>
+</html>

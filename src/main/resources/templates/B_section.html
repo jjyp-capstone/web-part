@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/style.css}" rel="stylesheet" />
+    <!-- Bootstrap CSS 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    -->
+    <title>Tech Trend Analysis</title>
+</head>
+<body>
+    <!--header(사이트 이름)-->
+    <div id="trend_header">
+        <p id="title">Technology Trend Analysis</p>
+    </div>
+    <div>
+        <!--사이드바-->
+        <div class="left-side-bar">
+            <div class="status-ico">
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"/>
+                  </svg></span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z"/>
+                  </svg></span>
+            </div>
+    
+            <ul>
+                <li>  </li>
+                <li>
+                    <a th:href="@{/home}">Home</a>
+                </li>
+                <li>
+                    <a href="#">IPC분류</a>
+                    <ul>
+                        <li><a th:href="@{/A_section}">A Section</a></li>
+                        <li><a th:href="@{/B_section}">B Section</a></li>
+                        <li><a th:href="@{/C_section}">C Section</a></li>
+                        <li><a th:href="@{/D_section}">D Section</a></li>
+                        <li><a th:href="@{/E_section}">E Section</a></li>
+                        <li><a th:href="@{/F_section}">F Section</a></li>
+                        <li><a th:href="@{/G_section}">G Section</a></li>
+                        <li><a th:href="@{/H_section}">H Section</a></li>
+                        <li><a th:href="@{/Y_section}">Y Section</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="A_main" >
+            <div style="display: flex; margin-left: 450px; margin-right: 100px;">
+                <div id="A_section">
+                    <div>
+                        <div id="section_0">
+                            &nbsp&nbsp IPC 분류 &nbsp&nbsp
+                        </div>
+                        <p id="section_1">IPC(International Patent Classification, 국제특허분류)는 발명의 기술분야를 나타내는 국제적으로 통일된 특허분류체계로, 
+                            특허청은 특허문헌의 분류, 검색을 용이하게 하도록 국내의 모든 출원건에 대하여 IPC를 부여하고 있다.</p>
+                    </div>
+                    <br><br><br>
+                    <div>
+                        <h1 id="section_0">&nbsp&nbsp B Section : 처리조작; 운수 &nbsp&nbsp</h1>
+                        <br><br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>코드</td>
+                                    <td id="script_col">설명</td>                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 분리; 혼합</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B01</td>
+                                    <td>물리적 방법, 화학적 방법 또는 장치일반</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B02</td>
+                                    <td>파쇄, 분쇄 또는 미분쇄; 제분을 위한 곡립의 전처리</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B03</td>
+                                    <td>액체에 의한 또는 풍력테이블 또는 지그에 의한 고체물질의 분리; 자기 또는
+                                         정전기에 의한 유체 또는 고체물질로부터 고체물질의 분리; 고압전계에 의한 분리</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B04</td>
+                                    <td>물리적 또는 화학적 공정을 행하기 위한 원심장치 또는  기계</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B05</td>
+                                    <td>무화 또는 분무일반; 유동성 재료의 표면에의 적용일반</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B06</td>
+                                    <td>기계적 진동의 발생 또는 전달 일반</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B07</td>
+                                    <td>고체상호의 분리; 선별</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B08</td>
+                                    <td>청소</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B09</td>
+                                    <td>고체 폐기물의 처리; 오염된 토양의 재생</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 성형</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B21</td>
+                                    <td>본질적으로 재료의 제거가 없는 기계적 금속가공; 금속의 펀칭(punching)</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B22</td>
+                                    <td>주조; 분말야금</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B23</td>
+                                    <td>공작 기계; 달리 분류되지 않는 금속 가공</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B24</td>
+                                    <td>연삭(GRINDING); 연마(POLISHING)</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B25</td>
+                                    <td>수공구; 휴대용 동력 구동 공구; 휴대용 기구의 손잡이; 작업장 설비; 매니플레이터</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B26</td>
+                                    <td>절단 수공구; 절단; 절단기</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B27</td>
+                                    <td>목재 또는 유사 재료의 가공 또는 보존; 못박기 기계 또는 스테이플 기계 일반</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B28</td>
+                                    <td>시멘트, 점토 또는 석재의 가공</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B29</td>
+                                    <td>플라스틱의 가공; 가소 상태 물질의 가공 일반</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B30</td>
+                                    <td>프레스</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B31</td>
+                                    <td>종이, 판지(CARDBOARD) 또는 종이와 유사한 방식으로 가공되는 물질을 사용한 제품의 제작;
+                                         종이 또는 판지, 판지 또는 종이와 유사한 방식으로 가공되는 물질의 가공</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B32</td>
+                                    <td>적층체</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B33</td>
+                                    <td>첨가물 제조 기술</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 인쇄</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B41</td>
+                                    <td>인쇄; 라이닝 장치; 타이프라이터; 스탬프</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B42</td>
+                                    <td>제본; 앨범; 파일, 특수 인쇄물</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B43</td>
+                                    <td>필기용 또는 제도용 기구; 책상 부속구</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B44</td>
+                                    <td>장식 기술</td>
+                                </tr>                        
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 운수</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B60</td>
+                                    <td>차량일반</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B61</td>
+                                    <td>철도</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B62</td>
+                                    <td>철도 이외의 노면 차량</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B63</td>
+                                    <td>선박 또는 그 밖의 물 위에 뜨는 구조물; 관련 의장품</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B64</td>
+                                    <td>항공기; 비행; 우주공학</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B65</td>
+                                    <td>운반; 포장; 저장; 얇거나 단섬유 부재의 취급</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B66</td>
+                                    <td>견인장치; 양중장치; 권상장치</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B67</td>
+                                    <td>병, 단지 또는 유사한 용기의 개봉 또는 밀봉; 액체의 취급</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">B68</td>
+                                    <td>마구(경마 또는 승마 경기를 위한 설비, 부속품 A63K 3/00); 
+                                        충전물(예; 소파, 의자, 침대, 방석, 이불, 베개 등의 가구용 충전물)</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                
+            </div>
+            
+        </div>
+        <div style="height: 200px;">
+
+        </div>
+        
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/style.css}" rel="stylesheet" />
+    <!-- Bootstrap CSS 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    -->
+    <title>Tech Trend Analysis</title>
+</head>
+<body>
+    <!--header(사이트 이름)-->
+    <div id="trend_header">
+        <p id="title">Technology Trend Analysis</p>
+    </div>
+    <div>
+        <!--사이드바-->
+        <div class="left-side-bar">
+            <div class="status-ico">
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-right-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.5 10a.5.5 0 0 0 .832.374l4.5-4a.5.5 0 0 0 0-.748l-4.5-4A.5.5 0 0 0 5.5 4v8z"/>
+                  </svg></span>
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z"/>
+                  </svg></span>
+            </div>
+    
+            <ul>
+                <li>  </li>
+                <li>
+                    <a th:href="@{/home}">Home</a>
+                </li>
+                <li>
+                    <a href="#">IPC분류</a>
+                    <ul>
+                        <li><a th:href="@{/A_section}">A Section</a></li>
+                        <li><a th:href="@{/B_section}">B Section</a></li>
+                        <li><a th:href="@{/C_section}">C Section</a></li>
+                        <li><a th:href="@{/D_section}">D Section</a></li>
+                        <li><a th:href="@{/E_section}">E Section</a></li>
+                        <li><a th:href="@{/F_section}">F Section</a></li>
+                        <li><a th:href="@{/G_section}">G Section</a></li>
+                        <li><a th:href="@{/H_section}">H Section</a></li>
+                        <li><a th:href="@{/Y_section}">Y Section</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="A_main" >
+            <div style="display: flex; margin-left: 450px; margin-right: 100px;">
+                <div id="A_section">
+                    <div>
+                        <div id="section_0">
+                            &nbsp&nbsp IPC 분류 &nbsp&nbsp
+                        </div>
+                        <p id="section_1">IPC(International Patent Classification, 국제특허분류)는 발명의 기술분야를 나타내는 국제적으로 통일된 특허분류체계로, 
+                            특허청은 특허문헌의 분류, 검색을 용이하게 하도록 국내의 모든 출원건에 대하여 IPC를 부여하고 있다.</p>
+                    </div>
+                    <br><br><br>
+                    <div>
+                        <h1 id="section_0">&nbsp&nbsp C Section : 화학; 야금 &nbsp&nbsp</h1>
+                        <br><br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>코드</td>
+                                    <td id="script_col">설명</td>                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 화학</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C01</td>
+                                    <td>무기화학</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C02</td>
+                                    <td>물, 폐수, 하수 또는 오니(슬러지)의 처리</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C03</td>
+                                    <td>유리; 광물 또는 슬래그울(Slag Wool)</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C04</td>
+                                    <td>시멘트; 콘크리트; 인조석; 세라믹스; 내화물</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C05</td>
+                                    <td>비료; 그 제조</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C06</td>
+                                    <td>
+                                        화약; 성냥(match)</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C07</td>
+                                    <td>유기화학</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C08</td>
+                                    <td>유기 고분자 화합물; 그 제조 또는 화학적 처리; 그에 따른 조성물</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C09</td>
+                                    <td>염료；페인트；윤기 방편제；천연 수지；
+                                        접착제；그 밖에 분류되지 않는 조성물；그 밖에 분류되지 않는 재료의 응용</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C10</td>
+                                    <td>석유, 가스 또는 코크스 공업; 일산화탄소를 함유하는 공업 가스; 연료; 윤활제; 이탄</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C11</td>
+                                    <td>동물성 또는 식물성유, 지방, 지방성 물질 또는 왁스; 그것들로부터 유래된 지방산; 세정제; 양초</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C12</td>
+                                    <td>생화학; 맥주; 주정; 포도주; 식초; 미생물학; 효소학; 돌연변이 또는 유전자공학</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C13</td>
+                                    <td>당 공업</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C14</td>
+                                    <td>원피; 나피; 생피 또는 피혁</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 도금</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C21</td>
+                                    <td>철 야금</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C22</td>
+                                    <td>야금; 철 또는 비철합금; 합금 또는 비철금속의 처리</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C23</td>
+                                    <td>금속재료의 피복; 금속 피복재료; 화학적 표면처리; 
+                                        금속재료의 확산처리; 진공증착, 스퍼터링(SPUTTERING), 이온주입 또는 화학증착에 의한 피복 일반; 금속재료의 방식 또는 이물질 형성 방지 일반</td>
+                                </tr>                                
+                                <tr>
+                                    <td id="code_col">C25</td>
+                                    <td>전기분해 또는 전기영동 방법; 그것을 위한 장치</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C30</td>
+                                    <td>결정성장</td>
+                                </tr>                            
+                                <tr>
+                                    <td colspan="2" id="sec_sub_title">&nbsp&nbsp&nbsp&nbsp ** 조합된 화학</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C40</td>
+                                    <td>조합된 기술</td>
+                                </tr>
+                                <tr>
+                                    <td id="code_col">C99</td>
+                                    <td>이 섹션 중에서 그 밖에 분류되지 않는 주제 사항</td>
+                                </tr>
+                                
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                
+            </div>
+            
+        </div>
+        <div style="height: 200px;">
+
+        </div>
+        
+    </div>
+    
+    
+</body>
+</html>
