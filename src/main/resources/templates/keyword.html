@@ -2,13 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/style.css}" rel="stylesheet" />
-    <!-- Bootstrap CSS 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    -->
+
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
@@ -18,14 +13,18 @@
     <script th:inline="javascript">
         anychart.onDocumentReady(function () { 
             var data1 = {};
-            var dataArray = [];
-            [# th:each="Posts : ${list}"]           //반복문으로 리스트 값 받아오기
-                data1.x = [[${Posts.keyword}]];     //변수 받기
-                data1.value = [[${Posts.weight}]];
-                dataArray.push({...data1});         //json형식으로 데이터 추가하기 위해서
-                //console.log(JSON.stringify(dataArray));
-            [/]
-
+            
+            //<테스트용 데이터
+            var dataArray = [
+							{ "x": "IT", "value": 100 }, 
+							{ "x": "Python", "value": 200}, 
+							{ "x": "소프트웨어", "value": 300}, 
+							{ "x": "JAVA", "value": 600 }, 
+							{ "x": "C++", "value": 50}, 
+							{ "x": "HTML", "value": 1000 } 
+							];
+             //테스트용 데이터>
+             
             var chart = anychart.tagCloud(dataArray); 
             chart.angles([0]); 
             chart.container("container"); 
@@ -36,8 +35,12 @@
             chart.listen("pointClick", function(e){
             //var url = "//en.wiktionary.org/wiki/" + e.point.get("x");
             //window.open(url, "_blank");
-            var url = "/keyword_detail" ;//+ e.point.get("x");
-            window.location.href=url;
+            var word = e.point.get("x");
+            document.getElementById("keyword").value = word
+            document.getElementById("submit").click()
+            //var url = "/keyword_detail" ;//+ e.point.get("x");
+            //var key = e.point.get("x");
+            //window.location.href=url;
 
             });
 
@@ -83,7 +86,11 @@
         </div>
         <div id="key_main" >
             <div id="div_key" style="display: flex; margin-left: 450px; margin-right: 100px;">
-                <div id="keyword">
+                <div id="keyword_">
+                    <form action th:object="${keyword}" method = "POST" style="display: none;">
+                        <input type="text" name ="keyword" id="keyword">
+                        <input type="submit" id="submit">
+                    </form>
                     <div class="chart-area" style="margin-top: 50px; text-align: center;"> 
                         <div id="container" style="width:500%; height:600px; display: block; margin: auto;"></div> 
                         <br/>
