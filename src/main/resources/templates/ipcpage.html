@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultpage</title>
+</head>
+<body>
+
+<h1>IPC TEST</h1>
+<table>
+    <tr>
+        <th>code</th>
+        <th>frequency</th>
+        <th>average_fluctuation_rate</th>
+    </tr>
+    <tr th:each="IPC:${IPC}">
+        <td th:text="${IPC.ipc_code}"></td>
+        <td th:text="${IPC.frequency}"></td>
+        <td th:text="${IPC.average_fluctuation_rate}"></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>keyword</th>
+        <th>ipc_code</th>
+        <th>count</th>
+        <th>rank</th>
+    </tr>
+    <tr th:each="keyword:${keyword}">
+        <td th:text="${keyword.keyword}"></td>
+        <td th:text="${keyword.ipc_code}"></td>
+        <td th:text="${keyword.count}"></td>
+        <td th:text="${keyword.count_rank}"></td>
+    </tr>
+</table>
+</body>
+</html>
