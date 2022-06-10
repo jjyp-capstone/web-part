@@ -58,16 +58,26 @@ public class MainpageController {
     //18:14 - postsRepository 추가 작업 필요함 지금은 주석처리해둠 
     @GetMapping("/home") //home 화면
     public String home(Model model){
-        //model.addAttribute("list",postsRepository.postall());
 
-        //return "demo_show";
         return "home"; 
  
     }
 
     @GetMapping("/keyword") //IPC 키워드 화면
-    public String keyword(Model model){
-        //model.addAttribute("list",postsRepository.postall());
+    public String keyword(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword, @RequestParam("param1") String param1, Model model){
+
+        List<Keywordcount> keywordcounts= new ArrayList<>();
+
+        model.addAttribute("param1", param1); //클릭한 IPC값
+
+        //System.out.println("ipc code: "+ipcCode);
+        System.out.println("keyword: "+keyword);
+
+        System.out.println("test success");
+
+        keywordcounts.addAll(keywordcountReopsitory.findByIpcCode(param1));
+        model.addAttribute("keyword",keywordcounts);
+
         return "keyword"; 
  
     }
