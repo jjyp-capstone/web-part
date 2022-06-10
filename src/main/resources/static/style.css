@@ -90,7 +90,7 @@ body {
 .left-side-bar {
     background-color: #C4DDFF;
     height: 100%;
-    width: 280px;
+    width: 220px;
     position: fixed;
     top: 100px;
     /**left: -155px;
@@ -151,9 +151,9 @@ body {
 #trend_list {
     /*border-style: groove; */
     margin-top: 200px; 
-    margin-right: 10px; 
+    margin-right: 50px; 
     margin-bottom: 100px;
-    width: 60%; 
+    width: 53%; 
     height: 480px;
 }
 
@@ -187,13 +187,13 @@ body {
 #trend_doughnut {
     border-style: ridge; 
     border-radius: 10px;
-    margin-top: 200px; 
-    width: 40%;
-    height: 480px;
+    margin-top: 300px; 
+    width: 43%;
+    height: 540px;
 }
 
 ol.mylist li {
-    padding: 5px 0px 5px 5px;
+    padding: 5px 5px 5px 5px;
     margin: 20px;
     border-bottom: 1px solid #efefef;
     font-size: 19px;
@@ -204,14 +204,32 @@ ol.mylist li {
 }
 
 ol.mylist li:hover {
-    color: blue;
+    color: white;
     font-style: oblique;
-    background-color: aliceblue;
+    background-color: gray;
+}
+
+#div1-1 {
+    margin-left: 350px;
+    margin-top: 150px;
+    margin-right: 20px;
+    margin-bottom: 300px;
+    /*border-style: groove;*/
+    height: 600px;
+}
+
+#div1-2 {
+    margin-left: 350px;
+    margin-top: 150px;
+    margin-right: 20px;
+    margin-bottom: 300px;
+    /*border-style: groove;*/
+    height: 600px;
 }
 
 #div2 {
     margin-left: 350px;
-    margin-top: 50px;
+    margin-top: 150px;
     margin-right: 20px;
     margin-bottom: 300px;
     /*border-style: groove;*/

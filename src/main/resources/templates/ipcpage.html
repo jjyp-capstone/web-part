@@ -13,6 +13,7 @@
         <th>frequency</th>
         <th>average_fluctuation_rate</th>
     </tr>
+    <!-- <tr th:each="IPC:${IPC}" th:if="${IPC.ipc_code == 'A01'}"> -->
     <tr th:each="IPC:${IPC}">
         <td th:text="${IPC.ipc_code}"></td>
         <td th:text="${IPC.frequency}"></td>
