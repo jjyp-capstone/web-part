@@ -150,7 +150,7 @@ body {
 
 #trend_list {
     /*border-style: groove; */
-    margin-top: 200px; 
+    margin-top: 150px; 
     margin-right: 50px; 
     margin-bottom: 100px;
     width: 53%; 
@@ -193,8 +193,7 @@ body {
 }
 
 ol.mylist li {
-    padding: 5px 5px 5px 5px;
-    margin: 20px;
+    padding: 22px 22px 22px 22px;
     border-bottom: 1px solid #efefef;
     font-size: 19px;
     font-weight: bold;
@@ -237,12 +236,12 @@ ol.mylist li:hover {
 }
 
 #div3 {
-    margin-left: 350px;
+    margin-left: 300px;
     margin-top: 50px;
     margin-right: 20px;
     margin-bottom: 200px;
     /*border-style: groove;*/
-    height: 700px;
+    height: 800px;
 }
 
 #div4 {
@@ -255,31 +254,54 @@ ol.mylist li:hover {
 }
 
 #keyword_ {
-    margin-top: 200px;
+    margin-top: 150px;
 }
 
 #keyword_detail {
-    margin-top: 200px;
+    margin-top: 150px;
+}
+
+#div_company {
+    margin-left: 350px;
+    margin-top: 50px;
+    margin-right: 20px;
+    margin-bottom: 200px;
+    /*border-style: groove;*/
+    height: 500px;
 }
 
 #de_news {
-    margin-left: 250px;
-    margin-top: 50px;
+    margin-left: 150px;
+    margin-top: 10px;
     margin-right: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     border-style: groove;
-    height: 700px;
-    width: 600px;
+    border-radius: 20px;
+    height: 150px;
+    width: 1300px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #de_YOUTUBE {
-    margin-left: 250px;
+    margin-left: 150px;
     margin-top: 50px;
     margin-right: 20px;
     margin-bottom: 300px;
     border-style: groove;
-    height: 700px;
-    width: 600px;
+    border-radius: 20px;
+    height: 500px;
+    width: 1300px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#newstitle {
+    margin-left: 20px;
+}
+
+#newstitle:hover{
+    color: crimson;
+    font-style: italic;
+    text-decoration: underline;
 }
 
 #A_section {

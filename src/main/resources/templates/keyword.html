@@ -44,6 +44,56 @@
         });
     </script>
     <!--header(사이트 이름)-->
+
+    <script th:inline="javascript">
+        anychart.onDocumentReady(function () {
+
+            // create data
+            var data = [
+            {x: "John", value: 10000},
+            {x: "Jake", value: 12000},
+            {x: "Peter", value: 13000,
+            normal:   {
+                fill: "#5cd65c",
+                stroke: null,
+                label: {enabled: true}
+                },
+            hovered:  {
+                fill: "#5cd65c",
+                stroke: null,
+                label: {enabled: true}
+                },
+            selected: {
+                fill: "#5cd65c",
+                stroke: null,
+                label: {enabled: true}
+                },
+            },
+            {x: "James", value: 10000},
+            {x: "Mary", value: 9000}
+            ];
+
+            // create a chart
+            var chart = anychart.bar();
+
+            // create a bar series and set the data
+            var series = chart.bar(data);
+
+            // set the chart title
+            chart.title("Bar Chart: Appearance (Individual Points)");
+
+            // set the titles of the axes
+            chart.xAxis().title("Manager");
+            chart.yAxis().title("Sales, $");
+
+            // set the container id
+            chart.container("container_bar");
+
+            // initiate drawing the chart
+            chart.draw();
+            });
+    </script>
+
     <div id="trend_header">
         <p id="title">Technology Trend Analysis</p>
     </div>
@@ -83,19 +133,25 @@
         <div id="key_main" >
             <div id="div_key" style="display: flex; margin-left: 300px; margin-right: 100px;">
                 <div id="keyword_">
+                    <div style="display: flex;">
+                        <h2 th:text="'[ ' + ${param1} + ' ]' + ' 연관 키워드' " style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; border-radius: 10px; padding: 10px;"></h2>
+                        <img th:src="@{/img/puzzle.png}" width="50px" height="50px" style="float: left; padding: 10px;" alt="word">
+                    </div>
+                    
+                    <div class="chart-area" style="margin-top: 50px; text-align: center;"> 
+                        <div id="container" style="width:500%; height:600px; display: block; margin: auto;"></div> 
+                        <br/>
+                    </div>
                     <form action th:object="${keyword}" method = "POST" style="display: none;">
                         <input type="text" name ="keyword" id="keyword">
                         <input type="submit" id="submit">
                     </form>
-                    <h2 th:text="${param1}"></h2>
-                    <div class="chart-area" style="margin-top: 50px; text-align: center;"> 
-                        <div id="container" style="width:500%; height:600px; display: block; margin: auto;"></div> 
-                        <br/>
-                        <br/>
-                        <h4>Trend WordCloud</h4>
-                    </div>
                 </div>
                 
+            </div>
+            <div id="div_company">
+                <div id="trend_analysis_title">&nbsp&nbsp IPC 비율 분석 &nbsp&nbsp</div>
+                <div id="container_bar" style="width: 70%; height: 100%; display: block; margin: auto; "></div>
             </div>
             
         </div>

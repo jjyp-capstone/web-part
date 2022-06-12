@@ -176,26 +176,29 @@
 
                 // create data
                 var data = [
-                {x: "2000", value: 1100, size: 3},
-                {x: "2001", value: 880, size: 4},
-                {x: "2002", value: 1100, size: 4},
-                {x: "2003", value: 1300, size: 5,
-                normal:   {
-                    fill: "#b30059 0.3",
-                    stroke: "#b30059"
-                    },
-                hovered:  {
-                    fill: "#b30059 0.1",
-                    stroke: "2 #b30059"
-                    },
-                selected: {
-                    fill: "#b30059 0.5",
-                    stroke: "4 #b30059"
+                    {x: "A41", value: 14.2443788239777, size:2},
+                    {x: "B08", value: 13.8788562783008, size:1},
+                    {x: "B32", value: 19.079229213734, size:8},
+                    {x: "B64", value: 18.6255510567601, size:6},
+                    {x: "B66", value: 16.6021627010919, size:3},
+                    {x: "G08", value: 24.5020037972943, size:9},
+                    {x: "G05", value: 18.803003375857, size:7},
+                    {x: "F25", value: 26.4229876988406, size:10,
+                    normal:   {
+                        fill: "#b30059 0.3",
+                        stroke: "#b30059"
+                        },
+                    hovered:  {
+                        fill: "#b30059 0.1",
+                        stroke: "2 #b30059"
+                        },
+                    selected: {
+                        fill: "#b30059 0.5",
+                        stroke: "4 #b30059"
                     }
-                },
-                {x: "2004", value: 921, size: 4.5},
-                {x: "2005", value: 1000, size: 3},
-                {x: "2006", value: 1400, size: 4}
+                    },
+                    {x: "F15", value: 18.4978663621048, size:5},
+                    {x: "F05", value: 17.231890860633, size:4},
                 ];
 
                 // create a chart
@@ -208,10 +211,16 @@
                 series = chart.bubble(data);
 
                 // set the chart title
-                chart.title("Bubble Chart: Appearance (Individual Points)");
+                //chart.title("Bubble Chart: Appearance (Individual Points)");
 
                 // enable the legend
-                chart.legend(true);
+                //chart.legend(true);
+                
+                var seriesLabels = chart.getSeries(0).labels().enabled(true);
+                seriesLabels.format("{%x}");
+
+                chart.minBubbleSize("3%");
+                chart.maxBubbleSize("20%");
 
                 // set the titles of the axes
                 //chart.xAxis().title("Year");
@@ -400,26 +409,26 @@
                     <div id="trend_list_title">&nbsp&nbsp2022 기술트렌드 예측 TOP 10 (by. IPC)&nbsp&nbsp</div>
                     <div style="display: block; margin: auto; background-color: #dee0e3; border-radius: 20px;">
                         <ol class="mylist" >
-                            <a th:href="@{/keyword(param1='F25')}" ><li>F25 - 냉동 또는 냉각; 가열과 냉동을 조합한 시스템; 히트펌프 시스템; <br> 얼음의 제조와 저장; 기체의 액화 또는 고체화</li></a>
-                            <a th:href="@{/keyword(param1='G08')}"><li>G08 - 신호</li></a>
-                            <a th:href="@{/keyword(param1='B32')}"><li>B32 -                                                                                                       적층체</li></a>
-                            <a th:href="@{/keyword(param1='G05')}"><li>G05 - 제어; 조정</li></a>
-                            <a th:href="@{/keyword(param1='B64')}"><li>B64 - 항공기; 비행; 우주공학</li></a>
-                            <a th:href="@{/keyword(param1='F15')}"><li>F15 - 액체압 액튜에이터; 유체학 또는 공기역학일반</li></a>
-                            <a th:href="@{/keyword(param1='F05')}"><li>F05 - 엔진 또는 펌프와 관련된 F01-F04분류의 다양한 하위 등급분야</li></a>
-                            <a th:href="@{/keyword(param1='B66')}"><li>B66 - 견인장치; 양중장치; 권상장치</li></a>
-                            <a th:href="@{/keyword(param1='A41')}"><li>A41 - 의류</li></a>
-                            <a th:href="@{/keyword(param1='B08')}"><li>B08 - 청소</li></a>
+                            <a th:href="@{/keyword(param1='F25')}"><li>F25 - 냉동 또는 냉각; 가열과 냉동을 조합한 시스템; 히트펌프 시스템; <br> 얼음의 제조와 저장; 기체의 액화 또는 고체화 <img th:src="@{/img/F25.png}" width="50px" height="50px" style="float: right;" alt="F25"></li></a>
+                            <a th:href="@{/keyword(param1='G08')}"><li>G08 - 신호 <img th:src="@{/img/G08.png}" width="50px" height="50px" style="float: right;" alt="G08"></li></a>
+                            <a th:href="@{/keyword(param1='B32')}"><li>B32 - 적층체 <img th:src="@{/img/B32.png}" width="50px" height="50px" style="float: right;" alt="B32"></li></a>
+                            <a th:href="@{/keyword(param1='G05')}"><li>G05 - 제어; 조정<img th:src="@{/img/G05.png}" width="50px" height="50px" style="float: right;" alt="G05"></li></a>
+                            <a th:href="@{/keyword(param1='B64')}"><li>B64 - 항공기; 비행; 우주공학<img th:src="@{/img/B64.png}" width="50px" height="50px" style="float: right;" alt="B64"></li></a>
+                            <a th:href="@{/keyword(param1='F15')}"><li>F15 - 액체압 액튜에이터; 유체학 또는 공기역학일반<img th:src="@{/img/F15.png}" width="50px" height="50px" style="float: right;" alt="F15"></li></a>
+                            <a th:href="@{/keyword(param1='F05')}"><li>F05 - 엔진 또는 펌프와 관련된 F01-F04분류의 다양한 하위 등급분야<img th:src="@{/img/F05.png}" width="50px" height="50px" style="float: right;" alt="F05"></li></a>
+                            <a th:href="@{/keyword(param1='B66')}"><li>B66 - 견인장치; 양중장치; 권상장치<img th:src="@{/img/B66.png}" width="50px" height="50px" style="float: right;" alt="B66"></li></a>
+                            <a th:href="@{/keyword(param1='A41')}"><li>A41 - 의류<img th:src="@{/img/A41.png}" width="50px" height="50px" style="float: right;" alt="A41"></li></a>
+                            <a th:href="@{/keyword(param1='B08')}"><li>B08 - 청소<img th:src="@{/img/B08.png}" width="50px" height="50px" style="float: right;" alt="B08"></li></a>
                         </ul>
                       </div>
-                    
+                      
                 </div>
                 <div id="trend_doughnut">
                     <div id="container_doughnut" style="width: 100%; height: 100%;"></div>
                 </div>
             </div>
 
-            <div id="div1-1" style="margin-left: 350px; margin-right: 20px; margin-top: 120px;">
+            <div id="div1-1" style="margin-left: 350px; margin-right: 20px; margin-top: 180px;">
                 <div id="trend_analysis_title">&nbsp&nbsp 2022년 최다빈출 TOP 10 &nbsp&nbsp</div>
                 <div id="container_column" style="width: 80%; height: 100%; display: block; margin: auto; "></div>
             </div>
@@ -429,15 +438,17 @@
                 <div id="container_column2" style="width: 80%; height: 100%; display: block; margin: auto; "></div>
             </div>
 
+            <div id="div3" >
+                <div id="trend_analysis_title">&nbsp&nbsp 2022 트렌드 IPC 분포 &nbsp&nbsp</div>
+                <div id="container_bubble" style="width: 80%; height: 100%; display: block; margin: auto; "></div>
+            </div>
+
             <div id="div2">
                 <div id="trend_analysis_title">&nbsp&nbsp 기술 분석 및 향후 추이&nbsp&nbsp</div>
                 <div id="container_line" style="width: 70%; height: 100%; display: block; margin: auto; "></div>
             </div>
 
-            <div id="div3" >
-                <div id="trend_analysis_title">&nbsp&nbsp IPC 분포 &nbsp&nbsp</div>
-                <div id="container_bubble" style="width: 70%; height: 100%; display: block; margin: auto; "></div>
-            </div>
+            
 
             <div id="div4">
                 <div id="trend_analysis_title">&nbsp&nbsp IPC 비율 분석 &nbsp&nbsp</div>
