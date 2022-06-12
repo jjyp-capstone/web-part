@@ -4,10 +4,12 @@ import com.capstone.trend.Crawl;
 import com.capstone.trend.YoutubeAPI;
 import com.capstone.trend.domain.IPC;
 import com.capstone.trend.domain.Keywordcount;
+import com.capstone.trend.domain.Organization;
 import com.capstone.trend.dto.MainpageDTO;
 import com.capstone.trend.dto.YoutubeDTO;
 import com.capstone.trend.repository.IPCRepository;
 import com.capstone.trend.repository.KeywordcountReopsitory;
+import com.capstone.trend.repository.OrganizationRepository;
 import com.google.api.services.youtube.model.SearchResult;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.nodes.Element;
@@ -143,6 +145,18 @@ public class MainpageController {
         }
 
         return "ipcpage";
+
+    }
+
+    @Autowired
+    private final OrganizationRepository organizationRepository;
+    @GetMapping("/organization")
+    public String organization(@RequestParam(value = "ipcCode")String ipcCode,Model model){
+        List<Organization> organizations = new ArrayList<>();
+        organizations.addAll(organizationRepository.findByCode(ipcCode));
+        model.addAttribute("organization", organizations);
+
+        return "testpage2";
 
     }
 
