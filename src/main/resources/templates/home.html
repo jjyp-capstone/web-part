@@ -408,18 +408,34 @@
                 <div id="trend_list">
                     <div id="trend_list_title">&nbsp&nbsp2022 기술트렌드 예측 TOP 10 (by. IPC)&nbsp&nbsp</div>
                     <div style="display: block; margin: auto; background-color: #dee0e3; border-radius: 20px;">
-                        <ol class="mylist" >
-                            <a th:href="@{/keyword(param1='F25')}"><li>F25 - 냉동 또는 냉각; 가열과 냉동을 조합한 시스템; 히트펌프 시스템; <br> 얼음의 제조와 저장; 기체의 액화 또는 고체화 <img th:src="@{/img/F25.png}" width="50px" height="50px" style="float: right;" alt="F25"></li></a>
-                            <a th:href="@{/keyword(param1='G08')}"><li>G08 - 신호 <img th:src="@{/img/G08.png}" width="50px" height="50px" style="float: right;" alt="G08"></li></a>
-                            <a th:href="@{/keyword(param1='B32')}"><li>B32 - 적층체 <img th:src="@{/img/B32.png}" width="50px" height="50px" style="float: right;" alt="B32"></li></a>
-                            <a th:href="@{/keyword(param1='G05')}"><li>G05 - 제어; 조정<img th:src="@{/img/G05.png}" width="50px" height="50px" style="float: right;" alt="G05"></li></a>
-                            <a th:href="@{/keyword(param1='B64')}"><li>B64 - 항공기; 비행; 우주공학<img th:src="@{/img/B64.png}" width="50px" height="50px" style="float: right;" alt="B64"></li></a>
-                            <a th:href="@{/keyword(param1='F15')}"><li>F15 - 액체압 액튜에이터; 유체학 또는 공기역학일반<img th:src="@{/img/F15.png}" width="50px" height="50px" style="float: right;" alt="F15"></li></a>
-                            <a th:href="@{/keyword(param1='F05')}"><li>F05 - 엔진 또는 펌프와 관련된 F01-F04분류의 다양한 하위 등급분야<img th:src="@{/img/F05.png}" width="50px" height="50px" style="float: right;" alt="F05"></li></a>
-                            <a th:href="@{/keyword(param1='B66')}"><li>B66 - 견인장치; 양중장치; 권상장치<img th:src="@{/img/B66.png}" width="50px" height="50px" style="float: right;" alt="B66"></li></a>
-                            <a th:href="@{/keyword(param1='A41')}"><li>A41 - 의류<img th:src="@{/img/A41.png}" width="50px" height="50px" style="float: right;" alt="A41"></li></a>
-                            <a th:href="@{/keyword(param1='B08')}"><li>B08 - 청소<img th:src="@{/img/B08.png}" width="50px" height="50px" style="float: right;" alt="B08"></li></a>
-                        </ul>
+                        <!-- <th:block th:each="t:${ipctitle}"> -->
+                            <ol class="mylist" >
+                                <!--
+                                <a th:href="@{/keyword(param1='F25')}"><li th:text="${t.title}" th:if="${t.ipc_code} == 'F25'"><img th:src="@{/img/F25.png}" width="30px" height="30px" style="float: right;" alt="F25"></li></a>
+                                <a th:href="@{/keyword(param1='G08')}"><li th:text="${t.title}" th:if="${t.ipc_code} == 'G08'"><img th:src="@{/img/G08.png}" width="30px" height="30px" style="float: right;" alt="G08"></li></a>
+                                <a th:href="@{/keyword(param1='B32')}"><li th:text="${t.title}" th:if="${t.ipc_code} == 'B32'"><img th:src="@{/img/B32.png}" width="30px" height="30px" style="float: right;" alt="B32"></li></a>
+                                <a th:href="@{/keyword(param1='G05')}"><li th:text="${t.title}" th:if="${t.ipc_code} == 'G05'"><img th:src="@{/img/G05.png}" width="30px" height="30px" style="float: right;" alt="G05"></li></a>
+                                <a th:href="@{/keyword(param1='B64')}"><li th:text="${t.title}" th:if="${t.ipc_code} == 'B64'"><img th:src="@{/img/B64.png}" width="30px" height="30px" style="float: right;" alt="B64"></li></a>
+                                <a th:href="@{/keyword(param1='F15')}"><li th:text="${t.title}" th:if="${t.ipc_code} == 'F15'"><img th:src="@{/img/F15.png}" width="30px" height="30px" style="float: right;" alt="F15"></li></a>
+                                <a th:href="@{/keyword(param1='F05')}"><li th:text="${t.title}" th:if="${t.ipc_code} == 'F05'"><img th:src="@{/img/F05.png}" width="30px" height="30px" style="float: right;" alt="F05"></li></a>
+                                <a th:href="@{/keyword(param1='B66')}"><li th:text="${t.title}" th:if="${t.ipc_code} == 'B66'"><img th:src="@{/img/B66.png}" width="30px" height="30px" style="float: right;" alt="B66"></li></a>
+                                <a th:href="@{/keyword(param1='A41')}"><li th:text="${t.title}" th:if="${t.ipc_code} == 'A41'"><img th:src="@{/img/A41.png}" width="30px" height="30px" style="float: right;" alt="A41"></li></a>
+                                <a th:href="@{/keyword(param1='B08')}"><li th:text="${t.title}" th:if="${t.ipc_code} == 'B08'"><img th:src="@{/img/B08.png}" width="30px" height="30px" style="float: right;" alt="B08"></li></a>
+                                -->
+                                <!-- <a th:href="@{/keyword(param1='F25')}"><li>F25 - 냉동 또는 냉각; 가열과 냉동을 조합한 시스템; 히트펌프 시스템; <br> 얼음의 제조와 저장; 기체의 액화 또는 고체화 <img th:src="@{/img/F25.png}" width="50px" height="50px" style="float: right;" alt="F25"></li></a> -->
+                                
+                                <a th:href="@{/keyword(param1='G08')}"><li>G08 - 신호 <img th:src="@{/img/G08.png}" width="50px" height="50px" style="float: right;" alt="G08"></li></a>
+                                <a th:href="@{/keyword(param1='B32')}"><li>B32 - 적층체 <img th:src="@{/img/B32.png}" width="50px" height="50px" style="float: right;" alt="B32"></li></a>
+                                <a th:href="@{/keyword(param1='G05')}"><li>G05 - 제어; 조정<img th:src="@{/img/G05.png}" width="50px" height="50px" style="float: right;" alt="G05"></li></a>
+                                <a th:href="@{/keyword(param1='B64')}"><li>B64 - 항공기; 비행; 우주공학<img th:src="@{/img/B64.png}" width="50px" height="50px" style="float: right;" alt="B64"></li></a>
+                                <a th:href="@{/keyword(param1='F15')}"><li>F15 - 액체압 액튜에이터; 유체학 또는 공기역학일반<img th:src="@{/img/F15.png}" width="50px" height="50px" style="float: right;" alt="F15"></li></a>
+                                <a th:href="@{/keyword(param1='F05')}"><li>F05 - 엔진 또는 펌프와 관련된 F01-F04분류의 다양한 하위 등급분야<img th:src="@{/img/F05.png}" width="50px" height="50px" style="float: right;" alt="F05"></li></a>
+                                <a th:href="@{/keyword(param1='B66')}"><li>B66 - 견인장치; 양중장치; 권상장치<img th:src="@{/img/B66.png}" width="50px" height="50px" style="float: right;" alt="B66"></li></a>
+                                <a th:href="@{/keyword(param1='A41')}"><li>A41 - 의류<img th:src="@{/img/A41.png}" width="50px" height="50px" style="float: right;" alt="A41"></li></a>
+                                <a th:href="@{/keyword(param1='B08')}"><li>B08 - 청소<img th:src="@{/img/B08.png}" width="50px" height="50px" style="float: right;" alt="B08"></li></a>
+                                
+                            </ol>
+                        <!-- </th:block> -->
                       </div>
                       
                 </div>
@@ -428,33 +444,34 @@
                 </div>
             </div>
 
-            <div id="div1-1" style="margin-left: 350px; margin-right: 20px; margin-top: 180px;">
-                <div id="trend_analysis_title">&nbsp&nbsp 2022년 최다빈출 TOP 10 &nbsp&nbsp</div>
-                <div id="container_column" style="width: 80%; height: 100%; display: block; margin: auto; "></div>
+            <div style="display: flex;">
+                <div id="div1-1" style="margin-left: 350px; margin-right: 5px; margin-top: 120px;">
+                    <div id="trend_analysis_title">&nbsp&nbsp 2022년 최다빈출 TOP 10 &nbsp&nbsp</div>
+                    <div id="container_column" style="width: 600px; height: 100%; display: block; margin: auto; "></div>
+                </div>
+    
+                <div id="div1-2" style="margin-left: 150px; margin-right: 20px; margin-top: 120px;">
+                    <div id="trend_analysis_title">&nbsp&nbsp 평균등락률(2016~2021) TOP 10 &nbsp&nbsp</div>
+                    <div id="container_column2" style="width: 600px; height: 100%; display: block; margin: auto; "></div>
+                </div>
             </div>
-
-            <div id="div1-2" style="margin-left: 350px; margin-right: 20px; margin-top: 120px;">
-                <div id="trend_analysis_title">&nbsp&nbsp 평균등락률(2016~2021) TOP 10 &nbsp&nbsp</div>
-                <div id="container_column2" style="width: 80%; height: 100%; display: block; margin: auto; "></div>
-            </div>
+            
 
             <div id="div3" >
                 <div id="trend_analysis_title">&nbsp&nbsp 2022 트렌드 IPC 분포 &nbsp&nbsp</div>
                 <div id="container_bubble" style="width: 80%; height: 100%; display: block; margin: auto; "></div>
             </div>
-
+            <!--
             <div id="div2">
                 <div id="trend_analysis_title">&nbsp&nbsp 기술 분석 및 향후 추이&nbsp&nbsp</div>
                 <div id="container_line" style="width: 70%; height: 100%; display: block; margin: auto; "></div>
             </div>
 
-            
-
             <div id="div4">
                 <div id="trend_analysis_title">&nbsp&nbsp IPC 비율 분석 &nbsp&nbsp</div>
                 <div id="container_bar" style="width: 70%; height: 100%; display: block; margin: auto; "></div>
             </div>
-
+            -->
         </div>
     
     </div>

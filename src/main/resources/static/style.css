@@ -212,16 +212,16 @@ ol.mylist li:hover {
     margin-left: 350px;
     margin-top: 150px;
     margin-right: 20px;
-    margin-bottom: 300px;
+    margin-bottom: 200px;
     /*border-style: groove;*/
     height: 600px;
 }
 
 #div1-2 {
-    margin-left: 350px;
+    margin-left: 150px;
     margin-top: 150px;
     margin-right: 20px;
-    margin-bottom: 300px;
+    margin-bottom: 200px;
     /*border-style: groove;*/
     height: 600px;
 }
@@ -265,7 +265,7 @@ ol.mylist li:hover {
     margin-left: 350px;
     margin-top: 50px;
     margin-right: 20px;
-    margin-bottom: 200px;
+    margin-bottom: 500px;
     /*border-style: groove;*/
     height: 500px;
 }
@@ -289,7 +289,7 @@ ol.mylist li:hover {
     margin-bottom: 300px;
     border-style: groove;
     border-radius: 20px;
-    height: 500px;
+    height: 650px;
     width: 1300px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -310,7 +310,7 @@ ol.mylist li:hover {
 }
 
 table {
-    border: 3px solid #797878;
+    border: 1px solid #797878;
     font-size: 20px;
     border-collapse: collapse;
 }
@@ -326,6 +326,11 @@ thead {
 tr, td {
     border: 1px solid #797878;
     padding: 7px;
+}
+
+#link:hover {
+    color: blue;
+    font-style: italic;
 }
 
 #sec_sub_title {

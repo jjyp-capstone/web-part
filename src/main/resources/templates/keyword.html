@@ -49,42 +49,24 @@
         anychart.onDocumentReady(function () {
 
             // create data
-            var data = [
-            {x: "John", value: 10000},
-            {x: "Jake", value: 12000},
-            {x: "Peter", value: 13000,
-            normal:   {
-                fill: "#5cd65c",
-                stroke: null,
-                label: {enabled: true}
-                },
-            hovered:  {
-                fill: "#5cd65c",
-                stroke: null,
-                label: {enabled: true}
-                },
-            selected: {
-                fill: "#5cd65c",
-                stroke: null,
-                label: {enabled: true}
-                },
-            },
-            {x: "James", value: 10000},
-            {x: "Mary", value: 9000}
-            ];
+            var data1 = {};
+            var dataArray = [];
+            [# th:each="o:${organization}"  th:if="${o.ipc_code == param1}" ]           //반복문으로 리스트 값 받아오기
+                data1.x = [[${o.organization}]];     //변수 받기
+                data1.value = [[${o.patent_number}]];
+                dataArray.push({...data1});         //json형식으로 데이터 추가하기 위해서
+                console.log(JSON.stringify(dataArray));
+            [/]
 
             // create a chart
-            var chart = anychart.bar();
-
-            // create a bar series and set the data
-            var series = chart.bar(data);
+            var chart = anychart.bar(dataArray);
 
             // set the chart title
-            chart.title("Bar Chart: Appearance (Individual Points)");
+            //chart.title("Bar Chart: Appearance (Individual Points)");
 
             // set the titles of the axes
-            chart.xAxis().title("Manager");
-            chart.yAxis().title("Sales, $");
+            chart.xAxis().title("출원회사");
+            chart.yAxis().title("특허 출원건수");
 
             // set the container id
             chart.container("container_bar");
@@ -150,7 +132,7 @@
                 
             </div>
             <div id="div_company">
-                <div id="trend_analysis_title">&nbsp&nbsp IPC 비율 분석 &nbsp&nbsp</div>
+                <div id="trend_analysis_title">&nbsp&nbsp 출원회사 순위 &nbsp&nbsp</div>
                 <div id="container_bar" style="width: 70%; height: 100%; display: block; margin: auto; "></div>
             </div>
             
