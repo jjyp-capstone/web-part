@@ -11,10 +11,12 @@
     <tr>
         <th>organization</th>
         <th>patent number</th>
+        <th>ipc code</th>
     </tr>
     <tr th:each="o:${organization}">
         <td th:text="${o.organization}"></td>
         <td th:text="${o.patent_number}"></td>
+        <td th:text="${o.ipc_code}"></td>
     </tr>
 </table>
 </body>
