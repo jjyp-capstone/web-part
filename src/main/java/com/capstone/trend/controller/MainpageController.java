@@ -2,16 +2,10 @@ package com.capstone.trend.controller;
 
 import com.capstone.trend.Crawl;
 import com.capstone.trend.YoutubeAPI;
-import com.capstone.trend.domain.IPC;
-import com.capstone.trend.domain.IPCtitle;
-import com.capstone.trend.domain.Keywordcount;
-import com.capstone.trend.domain.Organization;
+import com.capstone.trend.domain.*;
 import com.capstone.trend.dto.MainpageDTO;
 import com.capstone.trend.dto.YoutubeDTO;
-import com.capstone.trend.repository.IPCRepository;
-import com.capstone.trend.repository.IPCtitleRepository;
-import com.capstone.trend.repository.KeywordcountReopsitory;
-import com.capstone.trend.repository.OrganizationRepository;
+import com.capstone.trend.repository.*;
 import com.google.api.services.youtube.model.SearchResult;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.nodes.Element;
@@ -180,6 +174,19 @@ public class MainpageController {
         model.addAttribute("ipctitle", ipCtitles);
 
         return "ipc_title";
+    }
+
+    @Autowired
+    private final TrendscoreRepository trendscoreRepository;
+
+    @GetMapping("top_trend")
+    public String top_trend(Model model){
+        List<Trendscore> trendscores = new ArrayList<>();
+
+        trendscores.addAll(trendscoreRepository.find_all());
+        model.addAttribute("top_trend", trendscores);
+
+        return "top_trend";
     }
 
 
