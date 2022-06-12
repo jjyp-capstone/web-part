@@ -3,11 +3,13 @@ package com.capstone.trend.controller;
 import com.capstone.trend.Crawl;
 import com.capstone.trend.YoutubeAPI;
 import com.capstone.trend.domain.IPC;
+import com.capstone.trend.domain.IPCtitle;
 import com.capstone.trend.domain.Keywordcount;
 import com.capstone.trend.domain.Organization;
 import com.capstone.trend.dto.MainpageDTO;
 import com.capstone.trend.dto.YoutubeDTO;
 import com.capstone.trend.repository.IPCRepository;
+import com.capstone.trend.repository.IPCtitleRepository;
 import com.capstone.trend.repository.KeywordcountReopsitory;
 import com.capstone.trend.repository.OrganizationRepository;
 import com.google.api.services.youtube.model.SearchResult;
@@ -159,6 +161,20 @@ public class MainpageController {
         return "testpage2";
 
     }
+
+    @Autowired
+    private final IPCtitleRepository ipCtitleRepository;
+
+    @GetMapping("/ipctitle")
+    public String ipctitle(@RequestParam(value = "ipcCode") String ipcCode, Model model){
+        List<IPCtitle> ipCtitles = new ArrayList<>();
+        ipCtitles.addAll(ipCtitleRepository.findByCode(ipcCode));
+        model.addAttribute("ipctitle", ipCtitles);
+
+        return "ipc_title";
+    }
+
+
 
     @GetMapping("/keyword_detail") //키워드 관련 기사, 유튜브화면 
     public String keyword_detail(Model model){

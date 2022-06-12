@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultpage</title>
+</head>
+<body>
+
+<h1>Title TEST</h1>
+<table>
+    <tr>
+        <th>Code</th>
+        <th>title</th>
+    </tr>
+    <tr th:each="t:${ipctitle}">
+        <td th:text="${t.ipc_code}"></td>
+        <td th:text="${t.title}"></td>
+
+    </tr>
+</table>
+</body>
+</html>
