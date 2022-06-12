@@ -61,7 +61,11 @@ public class MainpageController {
     //탬플릿 추가 
     //18:14 - postsRepository 추가 작업 필요함 지금은 주석처리해둠 
     @GetMapping("/home") //home 화면
-    public String home(Model model){
+    public String home(@RequestParam(value = "ipctitle", required = false, defaultValue = "") String ipctitle, Model model){
+
+        List<IPCtitle> ipCtitles = new ArrayList<>();
+        ipCtitles.addAll(ipCtitleRepository.find_all());
+        model.addAttribute("ipctitle", ipCtitles);
 
         return "home"; 
  
@@ -73,6 +77,10 @@ public class MainpageController {
         List<Keywordcount> keywordcounts= new ArrayList<>();
 
         model.addAttribute("param1", param1); //클릭한 IPC값
+
+        List<Organization> organizations = new ArrayList<>();
+        organizations.addAll(organizationRepository.findByCode(param1));
+        model.addAttribute("organization", organizations);
 
         //System.out.println("ipc code: "+ipcCode);
         System.out.println("keyword: "+keyword);
@@ -153,7 +161,7 @@ public class MainpageController {
     @Autowired
     private final OrganizationRepository organizationRepository;
     @GetMapping("/organization")
-    public String organization(@RequestParam(value = "ipcCode")String ipcCode,Model model){
+    public String organization(@RequestParam(value = "ipcCode", required = false, defaultValue = "")String ipcCode,Model model){
         List<Organization> organizations = new ArrayList<>();
         organizations.addAll(organizationRepository.findByCode(ipcCode));
         model.addAttribute("organization", organizations);
@@ -166,7 +174,7 @@ public class MainpageController {
     private final IPCtitleRepository ipCtitleRepository;
 
     @GetMapping("/ipctitle")
-    public String ipctitle(@RequestParam(value = "ipcCode") String ipcCode, Model model){
+    public String ipctitle(@RequestParam(value = "ipcCode", required = false, defaultValue = "") String ipcCode, Model model){
         List<IPCtitle> ipCtitles = new ArrayList<>();
         ipCtitles.addAll(ipCtitleRepository.findByCode(ipcCode));
         model.addAttribute("ipctitle", ipCtitles);
