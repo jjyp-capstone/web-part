@@ -71,7 +71,7 @@
             <div style="display: flex; margin-left: 200px; margin-right: 20px;">
                 <div id="keyword_detail">
                     <div id="de_news" style="display: none;">
-                        <h1>keyword</h1>
+                        <h2>keyword</h2>
                         <div th:text="${mainpage.keyword}">keyword</div>
                         <h1>title</h1>
                         <div th:text="${mainpage.newstitle}">news title</div>
@@ -79,31 +79,42 @@
                         <a th:href="@{${mainpage.newsURL}}"><div th:text="${mainpage.newstitle}"></div></a>
                     </div>
                     <div id="de_news">
-                        <h2>추천 기사</h2>
-                        <a th:href="@{${mainpage.newsURL}}"><div th:text="${mainpage.newstitle}"></div></a>
+                        <h2 style="margin-left: 20px; background-color: dodgerblue; width: fit-content;">추천 기사</h2>
+                        <br>
+                        <a th:href="@{${mainpage.newsURL}}"><div th:text="${mainpage.newstitle}" id="newstitle"></div></a>
                     </div>
                     
                     <div id="de_YOUTUBE" >
-                        <h1>youtube</h1>
+                        <h2 style="margin-left: 20px; background-color: dodgerblue; width: fit-content;">추천 영상</h2>
                         <table>
                             <thead>
                             <tr>
-                                <th>youtube id</th>
+                                <th>no.</th>
                                 <th>youtube title</th>
                                 <th>youtube 링크</th>
                             </tr>
                             </thead>
-
                             <tbody>
-                            <tr th:each="m: ${youtube_id}">
-                                <td th:text="${m.youtubeid}">id</td>
-                                <td th:text="${m.youtubetitle}">title</td>
-                                <td>
-                                    <h2>추천 영상</h2>
-                                    <a th:href="@{'https://www.youtube.com/watch?v='+ ${m.youtubeid[0]}}" ><p th:text="${m.youtubetitle[0]}"></p></a>
-                                </td>
-                            </tr>
-
+                                <th:block th:each="m: ${mainpage}">
+                                    <tr th:each="youtubetitle,idx : ${#strings.arraySplit(m.youtubetitle,',')}">
+                                        <td th:text="${idx.count}"></td>
+                                        <td th:text="${youtubetitle}"></td>
+                                        <td>
+                                            <div th:if="${idx.count} == 1">
+                                                <a th:href="@{'https://www.youtube.com/watch?v='+ ${m.youtubeid[0]}}" ><p th:text="|${m.youtubetitle[0]}|"></p></a>
+                                            </div>
+                                            <a th:href="@{'https://www.youtube.com/watch?v='+ ${m.youtubeid[0]}}" ><p th:text="|${m.youtubetitle[0]}|"></p></a>
+                                            <a th:href="@{'https://www.youtube.com/watch?v='+ ${m.youtubeid[1]}}" ><p th:text="|${m.youtubetitle[1]}|"></p></a>
+                                            <a th:href="@{'https://www.youtube.com/watch?v='+ ${m.youtubeid[2]}}" ><p th:text="|${m.youtubetitle[2]}|"></p></a>
+                                            <a th:href="@{'https://www.youtube.com/watch?v='+ ${m.youtubeid[3]}}" ><p th:text="|${m.youtubetitle[3]}|"></p></a>
+                                            <a th:href="@{'https://www.youtube.com/watch?v='+ ${m.youtubeid[4]}}" ><p th:text="|${m.youtubetitle[4]}|"></p></a>
+                                        </td>
+                                        
+                                        
+                                    </tr>
+                                    
+                                </th:block>
+                                
                             </tbody>
                         </table>
                         
