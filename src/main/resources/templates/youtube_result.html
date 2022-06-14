@@ -17,7 +17,7 @@
 
     <tbody>
     <tr th:each = "y: ${youtubes}">
-        <td><a th:href="@{https://www.youtube.com/watch?v=}+${y.videoId}"><div th:text="${y.title}"></div>></td>
+        <td><a th:href="@{https://www.youtube.com/watch?v=}+${y.videoId}"><div th:text="${y.title}"></div></a></td>
         <td th:text = "${y.title}">title</td>
         <td><img th:src="@{https://img.youtube.com/vi/}+${y.videoId}+@{/mqdefault.jpg}"></td>
     </tr>
