@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mainpage</title>
+</head>
+<body>
+<form th:action="@{/news_result}" th:object="${query}" method = "POST">
+    <input th:type="text" th:field="*{keyword}">
+    <input type="submit">
+</form>
+
+</body>
+</html>

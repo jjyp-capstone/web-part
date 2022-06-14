@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultpage</title>
+</head>
+<body>
+<h1>youtube</h1>
+<table>
+    <thead>
+    <tr>
+        <th>news title</th>
+        <th>news link</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each = "n: ${news}">
+        <td><a th:href="@{${n.link}}" th:text="${n.title}">title</a></td>
+        <td th:text = "${n.link}">link</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

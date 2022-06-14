@@ -1,15 +1,20 @@
 package com.capstone.trend.controller;
 
 import com.capstone.trend.Crawl;
+import com.capstone.trend.Navernews;
 import com.capstone.trend.YoutubeAPI;
 import com.capstone.trend.domain.*;
+import com.capstone.trend.dto.FormDTO;
 import com.capstone.trend.dto.MainpageDTO;
+import com.capstone.trend.dto.NavernewsDTO;
 import com.capstone.trend.dto.YoutubeDTO;
 import com.capstone.trend.repository.*;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Thumbnail;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -186,19 +191,15 @@ public class MainpageController {
     ////////youtube 검색 부분 추가
 
     @GetMapping("/youtube_search")
-    public String getSearch(@ModelAttribute(value = "youtube") YoutubeDTO youtubeDTO){
+    public String youtubesearch(@ModelAttribute(value = "query") FormDTO formDTO){
 
         return "youtube_search";
     }
 
     @PostMapping("/youtube_result")
-    public String youtuberesult(@ModelAttribute("youtube") YoutubeDTO youtubeDTO1, Model model){
+    public String youtuberesult(@ModelAttribute(value = "query") FormDTO formDTO, Model model){
 
-
-
-        String kw =youtubeDTO1.getKeyword();
-
-        System.out.println(kw);
+        String kw =formDTO.getKeyword();
 
         Iterator<SearchResult> searchResultIterator = YoutubeAPI.getVideoId(kw);
         List<YoutubeDTO> youtubeDTOList = new ArrayList<>();
@@ -221,6 +222,43 @@ public class MainpageController {
 
 
         return "youtube_result";
+    }
+
+    // News 검색 부분 추가
+    @GetMapping("/news_search")
+    public String news_search(Model model){
+
+        model.addAttribute("query",new FormDTO());
+
+        return "news_search";
+    }
+
+
+    @PostMapping("/news_result")
+    public String news_result(@ModelAttribute(value = "query") FormDTO formDTO, Model model){
+        List<NavernewsDTO> navernewsDTOList = new ArrayList<>();
+
+        JSONArray items = Navernews.getJson(formDTO.getKeyword());
+
+        for (int i = 0; i<items.length(); i++){
+
+            NavernewsDTO navernewsDTO = new NavernewsDTO();
+            JSONObject obj = items.getJSONObject(i);
+            String title = obj.getString("title");
+            String link = obj.getString("link");
+
+            navernewsDTO.setTitle(title);
+            navernewsDTO.setLink(link);
+
+            navernewsDTOList.add(navernewsDTO);
+
+            System.out.println(title);
+            System.out.println(link);
+        }
+
+        model.addAttribute("news",navernewsDTOList);
+
+        return "news_result";
     }
 
 
