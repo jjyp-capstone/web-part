@@ -5,7 +5,7 @@
   <title>Mainpage</title>
 </head>
 <body>
-<form action th:object="${keyword}" method = "POST">
+<form th:action="@{/youtube_result}" th:object="${keyword}" method = "POST">
   <input type="text" th:name ="keyword">
   <input type="submit">
 </form>

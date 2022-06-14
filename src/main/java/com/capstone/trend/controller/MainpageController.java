@@ -188,7 +188,7 @@ public class MainpageController {
     @GetMapping("/youtube_search")
     public String getSearch(@ModelAttribute(value = "youtube") YoutubeDTO youtubeDTO){
 
-        return "youtubesearch";
+        return "youtube_search";
     }
 
     @PostMapping("/youtube_result")
@@ -220,7 +220,7 @@ public class MainpageController {
         model.addAttribute("youtubes", youtubeDTOList);
 
 
-        return "youtuberesult";
+        return "youtube_result";
     }
 
 
