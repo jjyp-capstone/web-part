@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultpage</title>
+</head>
+<body>
+
+<h1>IPC Code</h1><h1 th:text="${ipc_code}"></h1><h1>History</h1>
+<table>
+    <tr>
+
+        <th>date</th>
+        <th>count</th>
+    </tr>
+    <tr th:each="h:${ipc_history}">
+
+        <td th:text="${h._date}"></td>
+        <td th:text="${h.count}"></td>
+
+
+    </tr>
+</table>
+</body>
+</html>

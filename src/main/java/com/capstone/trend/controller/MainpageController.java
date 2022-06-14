@@ -260,6 +260,20 @@ public class MainpageController {
 
         return "news_result";
     }
+    // 꺾은선 그래프용 데이터
+    @Autowired
+    private final IPChistoryRepository ipchistoryRepository;
+
+    @GetMapping("ipc_history")
+    public String ipc_history(@RequestParam(value = "ipcCode")String ipcCode, Model model){
+        List<IPChistory> ipchistoryList = new ArrayList<>();
+
+        ipchistoryList.addAll(ipchistoryRepository.findByCode(ipcCode));
+        model.addAttribute("ipc_history", ipchistoryList);
+        model.addAttribute("ipc_code",ipcCode);
+
+        return "ipc_history";
+    }
 
 
 
