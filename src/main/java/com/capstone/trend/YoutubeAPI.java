@@ -167,7 +167,7 @@ public class YoutubeAPI {
         return idlist;
     }
 
-    public static List<String> getVideoId(String args){
+    public static Iterator<SearchResult> getVideoId(String args){
         Properties properties = new Properties();
         try {
             InputStream in = YouTube.Search.class.getResourceAsStream("/" + PROPERTIES_FILENAME);
@@ -217,7 +217,7 @@ public class YoutubeAPI {
             List<SearchResult> searchResultList = searchResponse.getItems();
 
             if (searchResultList != null) {
-                List<String> idlist = new ArrayList<>();
+                ArrayList<String> idlist = new ArrayList<>();
                 Iterator<SearchResult> iteratorSearchResults = searchResultList.listIterator();
 
                 if (!iteratorSearchResults.hasNext()) {
@@ -225,19 +225,7 @@ public class YoutubeAPI {
                     return null;
                 }
 
-
-                while (iteratorSearchResults.hasNext()) {
-                    SearchResult singleVideo = iteratorSearchResults.next();
-                    ResourceId rId = singleVideo.getId();
-
-
-                    // Double checks the kind is video.
-                    if (rId.getKind().equals("youtube#video")) {
-                        idlist.add(rId.getVideoId());
-                    }
-                }
-
-                return idlist;
+                return iteratorSearchResults;
 
 
             }
@@ -252,7 +240,7 @@ public class YoutubeAPI {
         return null;
     }
 
-    public static List<String> getVideotitle(String args){
+    public static ArrayList<String> getVideotitle(String args){
         Properties properties = new Properties();
         try {
             InputStream in = YouTube.Search.class.getResourceAsStream("/" + PROPERTIES_FILENAME);
@@ -302,7 +290,7 @@ public class YoutubeAPI {
             List<SearchResult> searchResultList = searchResponse.getItems();
 
             if (searchResultList != null) {
-                List<String> titlelist = new ArrayList<>();
+                ArrayList<String> titlelist = new ArrayList<>();
                 Iterator<SearchResult> iteratorSearchResults = searchResultList.listIterator();
 
                 if (!iteratorSearchResults.hasNext()) {

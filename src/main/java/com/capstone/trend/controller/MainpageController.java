@@ -6,7 +6,9 @@ import com.capstone.trend.domain.*;
 import com.capstone.trend.dto.MainpageDTO;
 import com.capstone.trend.dto.YoutubeDTO;
 import com.capstone.trend.repository.*;
+import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchResult;
+import com.google.api.services.youtube.model.Thumbnail;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -94,15 +97,6 @@ public class MainpageController {
         mainpageDTO.setNewsURL(crawl_result.get(0));
         mainpageDTO.setNewstitle(crawl_result.get(1));
 
-        // youtube id를 배열에 담아놓았습니다.
-        List<String> youtube_id = YoutubeAPI.getVideoId(mainpageDTO.getKeyword());
-        List<String> youtube_title = YoutubeAPI.getVideotitle(mainpageDTO.getKeyword());
-        mainpageDTO.setYoutubeid(youtube_id);
-        mainpageDTO.setYoutubetitle(youtube_title);
-        System.out.println(youtube_id);
-        System.out.println(youtube_title);
-
-        //return "resultpage";
         return "keyword_detail";
     }
 
@@ -187,6 +181,46 @@ public class MainpageController {
         model.addAttribute("top_trend", trendscores);
 
         return "top_trend";
+    }
+    
+    ////////youtube 검색 부분 추가
+
+    @GetMapping("/youtube_search")
+    public String getSearch(@ModelAttribute(value = "youtube") YoutubeDTO youtubeDTO){
+
+        return "youtubesearch";
+    }
+
+    @PostMapping("/youtube_result")
+    public String youtuberesult(@ModelAttribute("youtube") YoutubeDTO youtubeDTO1, Model model){
+
+
+
+        String kw =youtubeDTO1.getKeyword();
+
+        System.out.println(kw);
+
+        Iterator<SearchResult> searchResultIterator = YoutubeAPI.getVideoId(kw);
+        List<YoutubeDTO> youtubeDTOList = new ArrayList<>();
+
+        while(searchResultIterator.hasNext()){
+
+            YoutubeDTO youtubeDTO = new YoutubeDTO();
+            youtubeDTO.setKeyword(kw);
+            SearchResult singleVideo = searchResultIterator.next();
+            ResourceId rId = singleVideo.getId();
+            youtubeDTO.setVideoId(rId.getVideoId());
+            youtubeDTO.setTitle(singleVideo.getSnippet().getTitle());
+            Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
+            youtubeDTO.setThumbnailPath(thumbnail.getUrl());
+
+            youtubeDTOList.add(youtubeDTO);
+        }
+
+        model.addAttribute("youtubes", youtubeDTOList);
+
+
+        return "youtuberesult";
     }
 
 
