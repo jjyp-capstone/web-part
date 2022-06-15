@@ -75,9 +75,49 @@
             chart.draw();
             });
     </script>
+    
+    <script th:inline="javascript">
+        anychart.onDocumentReady(function () {
+
+            // create data
+            var data1 = {};
+            var dataArray = [];
+            [# th:each="h : ${ipc_history}"  th:if="${h.ipc_code == param1}" ] //반복문으로 리스트 값 받아오기
+                data1.x = [[${h.date}]];     //변수 받기
+                data1.value = [[${h.count}]];
+                dataArray.push({...data1});         //json형식으로 데이터 추가하기 위해서
+                //console.log(JSON.stringify(dataArray));
+            [/]
+
+            // create a chart
+            var chart = anychart.line();
+
+            // create a line series and set the data
+            var series = chart.line(dataArray);
+
+            // set the chart title
+            chart.title("Line Chart: Basic Sample");
+
+            // set the titles of the axes
+            var xAxis = chart.xAxis();
+            xAxis.title("Month");
+            var yAxis = chart.yAxis();
+            yAxis.title("Sales, $");
+
+            // set the container id
+            chart.container("container_line");
+
+            // initiate drawing the chart
+            chart.draw();
+            });
+    </script>
+
+    
+
+
 
     <div id="trend_header">
-        <p id="title">Technology Trend Analysis</p>
+        <a th:href="@{/home}"><p id="title">Technology Trend Analysis</p></a>
     </div>
     <div>
         <!--사이드바-->
@@ -131,16 +171,18 @@
                 </div>
                 
             </div>
+
             <div id="div_company">
                 <div id="trend_analysis_title">&nbsp&nbsp 출원회사 순위 &nbsp&nbsp</div>
-                <div id="container_bar" style="width: 70%; height: 100%; display: block; margin: auto; "></div>
+                <div id="container_bar" style="width: 70%; height: 95%; display: block; margin: auto; "></div>
+            </div>
+
+            <div id="div_history">
+                <div id="trend_analysis_title">&nbsp&nbsp 5개년 흐름 &nbsp&nbsp</div>
+                <div id="container_line" style="width: 100%; height: 95%; display: block; margin: auto; "></div>
             </div>
             
         </div>
-        
-        
     </div>
-    
-    
 </body>
 </html>

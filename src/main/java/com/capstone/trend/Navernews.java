@@ -1,6 +1,5 @@
 package com.capstone.trend;
 
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -15,56 +14,54 @@ import java.util.Map;
 public class Navernews {
 
     public static void main(String[] args) {
-        String clientId = "_KnaGSuC4ibWCvuPAqAq"; //ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””ê°’"
-        String clientSecret = "jc9mDHNEJZ"; //ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿ê°’"
-
+        String clientId = "_KnaGSuC4ibWCvuPAqAq"; // ¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ°ª"
+        String clientSecret = "jc9mDHNEJZ"; // ¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´°ª"
 
         String text = null;
         try {
-            text = URLEncoder.encode("ìŠ¤í™", "UTF-8");
+            text = URLEncoder.encode("½ºÆå", "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("ê²€ìƒ‰ì–´ ì¸ì½”ë”© ì‹¤íŒ¨",e);
+            throw new RuntimeException("°Ë»ö¾î ÀÎÄÚµù ½ÇÆĞ", e);
         }
 
-
-        String apiURL = "https://openapi.naver.com/v1/search/news?query=" + text +"&display=5&start=1&sort=sim";    // json ê²°ê³¼
-        //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml ê²°ê³¼
-
+        String apiURL = "https://openapi.naver.com/v1/search/news?query=" + text + "&display=5&start=1&sort=sim"; // json
+                                                                                                                  // °á°ú
+        // String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text;
+        // // xml °á°ú
 
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("X-Naver-Client-Id", clientId);
         requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-        String responseBody = get(apiURL,requestHeaders);
+        String responseBody = get(apiURL, requestHeaders);
 
     }
 
     public static JSONArray getJson(String query) {
-        String clientId = "_KnaGSuC4ibWCvuPAqAq"; //ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””ê°’"
-        String clientSecret = "jc9mDHNEJZ"; //ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿ê°’"
-
+        String clientId = "_KnaGSuC4ibWCvuPAqAq"; // ¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ°ª"
+        String clientSecret = "jc9mDHNEJZ"; // ¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´°ª"
 
         String text = null;
         try {
             text = URLEncoder.encode(query, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("ê²€ìƒ‰ì–´ ì¸ì½”ë”© ì‹¤íŒ¨",e);
+            throw new RuntimeException("°Ë»ö¾î ÀÎÄÚµù ½ÇÆĞ", e);
         }
 
-
-        String apiURL = "https://openapi.naver.com/v1/search/news?query=" + text +"&display=5&start=1&sort=sim";    // json ê²°ê³¼
-        //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml ê²°ê³¼
-
+        String apiURL = "https://openapi.naver.com/v1/search/news?query=" + text + "&display=5&start=1&sort=sim"; // json
+                                                                                                                  // °á°ú
+        // String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text;
+        // // xml °á°ú
 
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("X-Naver-Client-Id", clientId);
         requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-        String responseBody = get(apiURL,requestHeaders);
+        String responseBody = get(apiURL, requestHeaders);
 
         JSONObject json = new JSONObject(responseBody);
         System.out.println(responseBody);
         JSONArray items = json.getJSONArray("items");
 
-        for (int i = 0; i<items.length(); i++){
+        for (int i = 0; i < items.length(); i++) {
             JSONObject obj = items.getJSONObject(i);
             String title = obj.getString("title");
             String link = obj.getString("link");
@@ -77,49 +74,43 @@ public class Navernews {
 
     }
 
-
-    private static String get(String apiUrl, Map<String, String> requestHeaders){
+    private static String get(String apiUrl, Map<String, String> requestHeaders) {
         HttpURLConnection con = connect(apiUrl);
         try {
             con.setRequestMethod("GET");
-            for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
+            for (Map.Entry<String, String> header : requestHeaders.entrySet()) {
                 con.setRequestProperty(header.getKey(), header.getValue());
             }
 
-
             int responseCode = con.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) { // ì •ìƒ í˜¸ì¶œ
+            if (responseCode == HttpURLConnection.HTTP_OK) { // Á¤»ó È£Ãâ
                 return readBody(con.getInputStream());
-            } else { // ì—ëŸ¬ ë°œìƒ
+            } else { // ¿¡·¯ ¹ß»ı
                 return readBody(con.getErrorStream());
             }
         } catch (IOException e) {
-            throw new RuntimeException("API ìš”ì²­ê³¼ ì‘ë‹µ ì‹¤íŒ¨", e);
+            throw new RuntimeException("API ¿äÃ»°ú ÀÀ´ä ½ÇÆĞ", e);
         } finally {
             con.disconnect();
         }
     }
 
-
-    private static HttpURLConnection connect(String apiUrl){
+    private static HttpURLConnection connect(String apiUrl) {
         try {
             URL url = new URL(apiUrl);
-            return (HttpURLConnection)url.openConnection();
+            return (HttpURLConnection) url.openConnection();
         } catch (MalformedURLException e) {
-            throw new RuntimeException("API URLì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. : " + apiUrl, e);
+            throw new RuntimeException("API URLÀÌ Àß¸øµÇ¾ú½À´Ï´Ù. : " + apiUrl, e);
         } catch (IOException e) {
-            throw new RuntimeException("ì—°ê²°ì´ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. : " + apiUrl, e);
+            throw new RuntimeException("¿¬°áÀÌ ½ÇÆĞÇß½À´Ï´Ù. : " + apiUrl, e);
         }
     }
 
-
-    private static String readBody(InputStream body){
+    private static String readBody(InputStream body) {
         InputStreamReader streamReader = new InputStreamReader(body);
-
 
         try (BufferedReader lineReader = new BufferedReader(streamReader)) {
             StringBuilder responseBody = new StringBuilder();
-
 
             String line;
             while ((line = lineReader.readLine()) != null) {
@@ -128,7 +119,7 @@ public class Navernews {
 
             return responseBody.toString();
         } catch (IOException e) {
-            throw new RuntimeException("API ì‘ë‹µì„ ì½ëŠ”ë° ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.", e);
+            throw new RuntimeException("API ÀÀ´äÀ» ÀĞ´Âµ¥ ½ÇÆĞÇß½À´Ï´Ù.", e);
         }
     }
 }

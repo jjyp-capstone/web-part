@@ -192,17 +192,16 @@ body {
     height: 540px;
 }
 
-ol.mylist li {
-    padding: 22px 22px 22px 22px;
+#mylist {
+    margin-left: 20px;
+    margin-right: 20px;
     border-bottom: 1px solid #efefef;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: bold;
-    list-style-type: decimal;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }
 
-ol.mylist li:hover {
+#mylist:hover {
     color: white;
     font-style: oblique;
     background-color: gray;
@@ -265,6 +264,15 @@ ol.mylist li:hover {
     margin-left: 350px;
     margin-top: 50px;
     margin-right: 20px;
+    margin-bottom: 200px;
+    /*border-style: groove;*/
+    height: 500px;
+}
+
+#div_history {
+    margin-left: 350px;
+    margin-top: 50px;
+    margin-right: 20px;
     margin-bottom: 500px;
     /*border-style: groove;*/
     height: 500px;
@@ -277,7 +285,7 @@ ol.mylist li:hover {
     margin-bottom: 70px;
     border-style: groove;
     border-radius: 20px;
-    height: 150px;
+    height: 300px;
     width: 1300px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -289,13 +297,24 @@ ol.mylist li:hover {
     margin-bottom: 300px;
     border-style: groove;
     border-radius: 20px;
-    height: 650px;
+    height: 1150px;
     width: 1300px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+#you_title:hover {
+    color: crimson;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+#you_table {
+    margin-left: 50px;
+}
+
 #newstitle {
-    margin-left: 20px;
+    margin-left: 50px;
+    margin-bottom: 15px;
 }
 
 #newstitle:hover{
@@ -311,7 +330,7 @@ ol.mylist li:hover {
 
 table {
     border: 1px solid #797878;
-    font-size: 20px;
+    font-size: 18px;
     border-collapse: collapse;
 }
 

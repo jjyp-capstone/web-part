@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface TrendscoreRepository extends JpaRepository<Trendscore, String> {
 
-    @Query(value = "select * from trend_score", nativeQuery = true)
+    @Query(value = "select * from trend_score limit 10", nativeQuery = true)
     public List<Trendscore> find_all();
 }
