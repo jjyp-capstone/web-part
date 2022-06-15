@@ -174,41 +174,28 @@
         <script th:inline="javascript">
             anychart.onDocumentReady(function () {
 
+                // create a categorized chart
+                var chart = anychart.cartesian();
+
                 // create data
-                var data = [
-                    {x: "A41", value: 14.2443788239777, size:2},
-                    {x: "B08", value: 13.8788562783008, size:1},
-                    {x: "B32", value: 19.079229213734, size:8},
-                    {x: "B64", value: 18.6255510567601, size:6},
-                    {x: "B66", value: 16.6021627010919, size:3},
-                    {x: "G08", value: 24.5020037972943, size:9},
-                    {x: "G05", value: 18.803003375857, size:7},
-                    {x: "F25", value: 26.4229876988406, size:10,
-                    normal:   {
-                        fill: "#b30059 0.3",
-                        stroke: "#b30059"
-                        },
-                    hovered:  {
-                        fill: "#b30059 0.1",
-                        stroke: "2 #b30059"
-                        },
-                    selected: {
-                        fill: "#b30059 0.5",
-                        stroke: "4 #b30059"
-                    }
-                    },
-                    {x: "F15", value: 18.4978663621048, size:5},
-                    {x: "F05", value: 17.231890860633, size:4},
-                ];
+                var data1 = {};
+                var dataArray = [];
+                [# th:each= "IPC :${IPC}"]           //반복문으로 리스트 값 받아오기
+                    data1.x = [[${IPC.ipc_code}]];     //변수 받기
+                    data1.value = [[${IPC.average_fluctuation_rate}]];
+                    data1.size = [[${IPC.average_fluctuation_rate}]];
+                    dataArray.push({...data1});         //json형식으로 데이터 추가하기 위해서
+                    console.log(JSON.stringify(dataArray));
+                [/]
 
                 // create a chart
-                var chart = anychart.cartesian();
+                chart.bubble(dataArray);
 
                 // set the interactivity mode
                 chart.interactivity().hoverMode("by-x");
 
                 // create a bubble series and set the data
-                series = chart.bubble(data);
+                series = chart.bubble(dataArray);
 
                 // set the chart title
                 //chart.title("Bubble Chart: Appearance (Individual Points)");
@@ -220,7 +207,8 @@
                 seriesLabels.format("{%x}");
 
                 chart.minBubbleSize("3%");
-                chart.maxBubbleSize("20%");
+                chart.maxBubbleSize("30%");
+                
 
                 // set the titles of the axes
                 //chart.xAxis().title("Year");
@@ -287,39 +275,24 @@
 
         <script th:inline="javascript">
             anychart.onDocumentReady(function () {
+                // create a categorized chart
+                var chart = anychart.cartesian();
+
                 // create data
-                var data = [
-                {x: "H04", value: 565076.86767},
-                {x: "F16", value: 104549.99936},
-                {x: "G06", value: 629064.22656,
-                normal:   {
-                    fill: "#5cd65c",
-                    stroke: null,
-                    label: {enabled: true, fontColor:"red", fontWeight:900}
-                    },
-                hovered:  {
-                    fill: "#5cd65c",
-                    label: {enabled: true, fontColor:"red", fontWeight:900}
-                    },
-                selected: {
-                    fill: "#5cd65c",
-                    label: {enabled: true, fontColor:"red", fontWeight:900}
-                    },
-                },
-                {x: "A61", value: 317089.55505},
-                {x: "B60", value: 141934.38163},
-                {x: "G02", value: 122215.49536},
-                {x: "H01", value: 355263.78059},
-                {x: "Y02", value: 246094.93031},
-                {x: "G01", value: 253001.18159},
-                {x: "H02", value: 113551.32471}
-                ];
+                var data1 = {};
+                var dataArray = [];
+                [# th:each= "IPC_freq :${IPC_freq}" ]           //반복문으로 리스트 값 받아오기
+                    data1.x = [[${IPC_freq.ipc_code}]];     //변수 받기
+                    data1.value = [[${IPC_freq.frequency}]];
+                    dataArray.push({...data1});         //json형식으로 데이터 추가하기 위해서
+                    console.log(JSON.stringify(dataArray));
+                [/]
 
                 // create a chart
-                var chart = anychart.column();
+                var chart = anychart.column(dataArray);
 
                 // create a column series and set the data
-                var series = chart.column(data);
+                //var series = chart.column(dataArray);
 
                 // set the chart title
                 //chart.title("Column Chart: Appearance (Individual Points)");
@@ -346,39 +319,24 @@
 
         <script th:inline="javascript">
             anychart.onDocumentReady(function () {
+                // create a categorized chart
+                var chart = anychart.cartesian();
+
                 // create data
-                var data = [
-                {x: "A24", value: 23.25},
-                {x: "B22", value: 13.47},
-                {x: "B25", value: 10.26},
-                {x: "B33", value: 37.18,
-                normal:   {
-                    fill: "#FF4500",
-                    stroke: null,
-                    label: {enabled: true, fontColor:"red", fontWeight:900}
-                    },
-                hovered:  {
-                    fill: "#FF4500",
-                    label: {enabled: true, fontColor:"red", fontWeight:900}
-                    },
-                selected: {
-                    fill: "#FF4500",
-                    label: {enabled: true, fontColor:"red", fontWeight:900}
-                    }
-                },
-                {x: "B64", value: 13.1},
-                {x: "D10", value: 15.98},
-                {x: "F05", value: 15.16},
-                {x: "G05", value: 14.71},
-                {x: "G08", value: 10.23},
-                {x: "G16", value: 16.5}
-                ];
+                var data1 = {};
+                var dataArray = [];
+                [# th:each= "IPC_aver :${IPC_aver}" ]           //반복문으로 리스트 값 받아오기
+                    data1.x = [[${IPC_aver.ipc_code}]];     //변수 받기
+                    data1.value = [[${IPC_aver.average_fluctuation_rate}]];
+                    dataArray.push({...data1});         //json형식으로 데이터 추가하기 위해서
+                    console.log(JSON.stringify(dataArray));
+                [/]
 
                 // create a chart
-                var chart = anychart.column();
+                var chart = anychart.column(dataArray);
 
                 // create a column series and set the data
-                var series = chart.column(data);
+                //var series = chart.column(dataArray);
 
                 // set the chart title
                 //chart.title("Column Chart: Appearance (Individual Points)");
@@ -459,7 +417,7 @@
 
             <div id="div3" >
                 <div id="trend_analysis_title">&nbsp&nbsp 2022 트렌드 IPC 분포 &nbsp&nbsp</div>
-                <div id="container_bubble" style="width: 80%; height: 100%; display: block; margin: auto; "></div>
+                <div id="container_bubble" style="width: 75%; height: 90%; display: block; margin: auto; "></div>
             </div>
             <!--
             <div id="div2">

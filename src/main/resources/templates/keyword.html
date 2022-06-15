@@ -31,7 +31,7 @@
             chart.listen("pointClick", function(e){
             //var url = "//en.wiktionary.org/wiki/" + e.point.get("x");
             //window.open(url, "_blank");
-            var word = e.point.get("x");
+            var word = 'tech ' + e.point.get("x");
             document.getElementById("keyword").value = word
             document.getElementById("submit").click()
             //var url = "/keyword_detail" ;//+ e.point.get("x");

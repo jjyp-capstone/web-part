@@ -58,11 +58,27 @@ public class MainpageController {
     //탬플릿 추가 
     //18:14 - postsRepository 추가 작업 필요함 지금은 주석처리해둠 
     @GetMapping("/home") //home 화면
-    public String home(@RequestParam(value = "ipctitle", required = false, defaultValue = "") String ipctitle, Model model){
+    public String home(@RequestParam(value = "ipctitle", required = false, defaultValue = "") String ipctitle,
+                        @RequestParam(value = "ipcCode", required = false, defaultValue = "") String ipcCode, 
+                        @RequestParam(value = "frequency", required = false, defaultValue = "") String frequency, 
+                        @RequestParam(value = "average", required = false, defaultValue = "") String average, Model model){
 
         List<IPCtitle> ipCtitles = new ArrayList<>();
         ipCtitles.addAll(ipCtitleRepository.find_all());
         model.addAttribute("ipctitle", ipCtitles);
+
+        List<IPC> ipcList = new ArrayList<>();
+        ipcList.addAll(ipcRepository.find_all());
+        model.addAttribute("IPC",ipcList);
+
+        List<IPC> ipc_freq = new ArrayList<>();
+        ipc_freq.addAll(ipcRepository.find_top10());
+        model.addAttribute("IPC_freq",ipc_freq);
+
+        List<IPC> ipc_aver = new ArrayList<>();
+        ipc_aver.addAll(ipcRepository.find_top10_B());
+        model.addAttribute("IPC_aver",ipc_aver);
+
 
         return "home"; 
  
