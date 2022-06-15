@@ -35,38 +35,52 @@ public class MainpageController {
     @Autowired
     private final KeywordcountReopsitory keywordcountReopsitory;
 
+    @Autowired
+    private final IPChistoryRepository ipchistoryRepository;
+
+    @Autowired
+    private final TrendscoreRepository trendscoreRepository;
+
     @GetMapping("/main")
-    public String getSearch(Model model){
+    public String getSearch(Model model) {
 
         return "mainpage";
     }
-    /** 2022-06-06 윤선희 : keyword로 소스 옮겨둠 필요할때 여기 주석 풀고 keyword쪽 postmapping 주석처리해서 사용하시면됩니다.
-    @PostMapping("/main")
-    public String setSearch(@ModelAttribute("mainpage") MainpageDTO mainpageDTO){
-        List<String> crawl_result = Crawl.main(mainpageDTO.getKeyword());
-        mainpageDTO.setNewsURL(crawl_result.get(0));
-        mainpageDTO.setNewstitle(crawl_result.get(1));
 
-        // youtube id를 배열에 담아놓았습니다.
-        List<String> youtube_id = YoutubeAPI.getVideoId(mainpageDTO.getKeyword());
-        List<String> youtube_title = YoutubeAPI.getVideotitle(mainpageDTO.getKeyword());
-        mainpageDTO.setYoutubeid(youtube_id);
-        mainpageDTO.setYoutubetitle(youtube_title);
-        System.out.println(youtube_id);
-        System.out.println(youtube_title);
-
-        return "resultpage";
-    }
+    /**
+     * 2022-06-06 윤선희 : keyword로 소스 옮겨둠 필요할때 여기 주석 풀고 keyword쪽 postmapping
+     * 
+     * 
+     * 석처리해서
+     * 사용하시면됩니다.
+     * @PostMapping("/main")
+     * public String setSearch(@ModelAttribute("mainpage") MainpageDTO mainpageDTO){
+     * List<String> crawl_result = Crawl.main(mainpageDTO.getKeyword());
+     * mainpageDTO.setNewsURL(crawl_result.get(0));
+     * mainpageDTO.setNewstitle(crawl_result.get(1));
+     * 
+     * // youtube id를 배열에 담아놓았습니다.
+     * List<String> youtube_id = YoutubeAPI.getVideoId(mainpageDTO.getKeyword());
+     * List<String> youtube_title =
+     * YoutubeAPI.getVideotitle(mainpageDTO.getKeyword());
+     * mainpageDTO.setYoutubeid(youtube_id);
+     * mainpageDTO.setYoutubetitle(youtube_title);
+     * System.out.println(youtube_id);
+     * System.out.println(youtube_title);
+     * 
+     * return "resultpage";
+     * }
      */
 
-    //2022-06-06 윤선희
-    //탬플릿 추가 
-    //18:14 - postsRepository 추가 작업 필요함 지금은 주석처리해둠 
-    @GetMapping("/home") //home 화면
+    // 2022-06-06 윤선희
+    // 탬플릿 추가
+    // 18:14 - postsRepository 추가 작업 필요함 지금은 주석처리해둠
+    @GetMapping("/home") // home 화면
     public String home(@RequestParam(value = "ipctitle", required = false, defaultValue = "") String ipctitle,
-                        @RequestParam(value = "ipcCode", required = false, defaultValue = "") String ipcCode, 
-                        @RequestParam(value = "frequency", required = false, defaultValue = "") String frequency, 
-                        @RequestParam(value = "average", required = false, defaultValue = "") String average, Model model){
+            @RequestParam(value = "ipcCode", required = false, defaultValue = "") String ipcCode,
+            @RequestParam(value = "frequency", required = false, defaultValue = "") String frequency,
+            @RequestParam(value = "average", required = false, defaultValue = "") String average,
+            @RequestParam(value = "trend", required = false, defaultValue = "") String trend, Model model) {
 
         List<IPCtitle> ipCtitles = new ArrayList<>();
         ipCtitles.addAll(ipCtitleRepository.find_all());
@@ -74,189 +88,56 @@ public class MainpageController {
 
         List<IPC> ipcList = new ArrayList<>();
         ipcList.addAll(ipcRepository.find_all());
-        model.addAttribute("IPC",ipcList);
+        model.addAttribute("IPC", ipcList);
 
         List<IPC> ipc_freq = new ArrayList<>();
         ipc_freq.addAll(ipcRepository.find_top10());
-        model.addAttribute("IPC_freq",ipc_freq);
+        model.addAttribute("IPC_freq", ipc_freq);
 
         List<IPC> ipc_aver = new ArrayList<>();
         ipc_aver.addAll(ipcRepository.find_top10_B());
-        model.addAttribute("IPC_aver",ipc_aver);
+        model.addAttribute("IPC_aver", ipc_aver);
 
+        List<Trendscore> trendscores = new ArrayList<>();
+        trendscores.addAll(trendscoreRepository.find_all());
+        model.addAttribute("top_trend", trendscores);
 
-        return "home"; 
- 
+        return "home";
+
     }
 
-    @GetMapping("/keyword") //IPC 키워드 화면
-    public String keyword(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword, @RequestParam("param1") String param1, Model model){
+    @GetMapping("/keyword") // IPC 키워드 화면
+    public String keyword(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+            @RequestParam("param1") String param1, Model model) {
 
-        List<Keywordcount> keywordcounts= new ArrayList<>();
+        List<Keywordcount> keywordcounts = new ArrayList<>();
 
-        model.addAttribute("param1", param1); //클릭한 IPC값
+        model.addAttribute("param1", param1); // 클릭한 IPC값
+
+        keywordcounts.addAll(keywordcountReopsitory.findByIpcCode(param1));
+        model.addAttribute("keyword", keywordcounts);
 
         List<Organization> organizations = new ArrayList<>();
         organizations.addAll(organizationRepository.findByCode(param1));
         model.addAttribute("organization", organizations);
+        System.out.println("organization success");
 
-        //System.out.println("ipc code: "+ipcCode);
-        System.out.println("keyword: "+keyword);
+        List<IPChistory> ipchistoryList = new ArrayList<>();
+        ipchistoryList.addAll(ipchistoryRepository.findByCode(param1));
+        model.addAttribute("ipc_history", ipchistoryList);
+        System.out.println("ipc_history success");
 
-        System.out.println("test success");
+        return "keyword";
 
-        keywordcounts.addAll(keywordcountReopsitory.findByIpcCode(param1));
-        model.addAttribute("keyword",keywordcounts);
-
-        return "keyword"; 
- 
     }
 
     @PostMapping("/keyword")
-    public String setSearch(@ModelAttribute("mainpage") MainpageDTO mainpageDTO){
-        List<String> crawl_result = Crawl.main(mainpageDTO.getKeyword());
-        mainpageDTO.setNewsURL(crawl_result.get(0));
-        mainpageDTO.setNewstitle(crawl_result.get(1));
-
-        return "keyword_detail";
-    }
-
-    @GetMapping("/IPC")
-    public String IPC(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-                          @RequestParam(value = "ipcCode", required = false, defaultValue = "") String ipcCode, Model model){
-
-        List<IPC> ipcList = new ArrayList<>();
-
-        ipcList.addAll(ipcRepository.find_all());
-        model.addAttribute("IPC",ipcList);
-
-        List<Keywordcount> keywordcounts= new ArrayList<>();
-
-        System.out.println("ipc code: "+ipcCode);
-        System.out.println("keyword: "+keyword);
-
-        if (keyword.isBlank() && ipcCode.isBlank()){
-            keywordcounts.addAll(keywordcountReopsitory.find_all());
-            model.addAttribute("keyword",keywordcounts);
-
-        }
-
-        else if(!keyword.isBlank() && ipcCode.isBlank() ){
-            System.out.println("search by keyword");
-            keywordcounts.addAll(keywordcountReopsitory.findByKeyword(keyword));
-            model.addAttribute("keyword",keywordcounts);
-
-        }
-
-        else if(keyword.isBlank() && !ipcCode.isBlank()){
-            System.out.println("search by ipc code");
-            keywordcounts.addAll(keywordcountReopsitory.findByIpcCode(ipcCode));
-            model.addAttribute("keyword",keywordcounts);
-
-
-        }
-        else{
-            System.out.println("test success");
-
-            keywordcounts.addAll(keywordcountReopsitory.find_all());
-            model.addAttribute("keyword",keywordcounts);
-
-        }
-
-        return "ipcpage";
-
-    }
-
-    @Autowired
-    private final OrganizationRepository organizationRepository;
-    @GetMapping("/organization")
-    public String organization(@RequestParam(value = "ipcCode", required = false, defaultValue = "")String ipcCode,Model model){
-        List<Organization> organizations = new ArrayList<>();
-        organizations.addAll(organizationRepository.findByCode(ipcCode));
-        model.addAttribute("organization", organizations);
-
-        return "testpage2";
-
-    }
-
-    @Autowired
-    private final IPCtitleRepository ipCtitleRepository;
-
-    @GetMapping("/ipctitle")
-    public String ipctitle(@RequestParam(value = "ipcCode", required = false, defaultValue = "") String ipcCode, Model model){
-        List<IPCtitle> ipCtitles = new ArrayList<>();
-        ipCtitles.addAll(ipCtitleRepository.findByCode(ipcCode));
-        model.addAttribute("ipctitle", ipCtitles);
-
-        return "ipc_title";
-    }
-
-    @Autowired
-    private final TrendscoreRepository trendscoreRepository;
-
-    @GetMapping("top_trend")
-    public String top_trend(Model model){
-        List<Trendscore> trendscores = new ArrayList<>();
-
-        trendscores.addAll(trendscoreRepository.find_all());
-        model.addAttribute("top_trend", trendscores);
-
-        return "top_trend";
-    }
-    
-    ////////youtube 검색 부분 추가
-
-    @GetMapping("/youtube_search")
-    public String youtubesearch(@ModelAttribute(value = "query") FormDTO formDTO){
-
-        return "youtube_search";
-    }
-
-    @PostMapping("/youtube_result")
-    public String youtuberesult(@ModelAttribute(value = "query") FormDTO formDTO, Model model){
-
-        String kw =formDTO.getKeyword();
-
-        Iterator<SearchResult> searchResultIterator = YoutubeAPI.getVideoId(kw);
-        List<YoutubeDTO> youtubeDTOList = new ArrayList<>();
-
-        while(searchResultIterator.hasNext()){
-
-            YoutubeDTO youtubeDTO = new YoutubeDTO();
-            youtubeDTO.setKeyword(kw);
-            SearchResult singleVideo = searchResultIterator.next();
-            ResourceId rId = singleVideo.getId();
-            youtubeDTO.setVideoId(rId.getVideoId());
-            youtubeDTO.setTitle(singleVideo.getSnippet().getTitle());
-            Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
-            youtubeDTO.setThumbnailPath(thumbnail.getUrl());
-
-            youtubeDTOList.add(youtubeDTO);
-        }
-
-        model.addAttribute("youtubes", youtubeDTOList);
-
-
-        return "youtube_result";
-    }
-
-    // News 검색 부분 추가
-    @GetMapping("/news_search")
-    public String news_search(Model model){
-
-        model.addAttribute("query",new FormDTO());
-
-        return "news_search";
-    }
-
-
-    @PostMapping("/news_result")
-    public String news_result(@ModelAttribute(value = "query") FormDTO formDTO, Model model){
+    public String keyword(@ModelAttribute(value = "query") FormDTO formDTO, Model model) {
         List<NavernewsDTO> navernewsDTOList = new ArrayList<>();
 
         JSONArray items = Navernews.getJson(formDTO.getKeyword());
 
-        for (int i = 0; i<items.length(); i++){
+        for (int i = 0; i < items.length(); i++) {
 
             NavernewsDTO navernewsDTO = new NavernewsDTO();
             JSONObject obj = items.getJSONObject(i);
@@ -272,106 +153,268 @@ public class MainpageController {
             System.out.println(link);
         }
 
-        model.addAttribute("news",navernewsDTOList);
+        model.addAttribute("news", navernewsDTOList);
+
+        String kw = formDTO.getKeyword();
+
+        Iterator<SearchResult> searchResultIterator = YoutubeAPI.getVideoId(kw);
+        List<YoutubeDTO> youtubeDTOList = new ArrayList<>();
+
+        while (searchResultIterator.hasNext()) {
+
+            YoutubeDTO youtubeDTO = new YoutubeDTO();
+            youtubeDTO.setKeyword(kw);
+            SearchResult singleVideo = searchResultIterator.next();
+            ResourceId rId = singleVideo.getId();
+            youtubeDTO.setVideoId(rId.getVideoId());
+            youtubeDTO.setTitle(singleVideo.getSnippet().getTitle());
+            Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
+            youtubeDTO.setThumbnailPath(thumbnail.getUrl());
+
+            youtubeDTOList.add(youtubeDTO);
+        }
+
+        model.addAttribute("youtubes", youtubeDTOList);
+
+        return "keyword_detail";
+    }
+
+    @GetMapping("/keyword_detail") // 키워드 관련 기사, 유튜브화면
+    public String keyword_detail(Model model) {
+        // model.addAttribute("list",postsRepository.postall());
+        return "keyword_detail";
+
+    }
+
+    @GetMapping("/IPC")
+    public String IPC(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+            @RequestParam(value = "ipcCode", required = false, defaultValue = "") String ipcCode, Model model) {
+
+        List<IPC> ipcList = new ArrayList<>();
+
+        ipcList.addAll(ipcRepository.find_all());
+        model.addAttribute("IPC", ipcList);
+
+        List<Keywordcount> keywordcounts = new ArrayList<>();
+
+        System.out.println("ipc code: " + ipcCode);
+        System.out.println("keyword: " + keyword);
+
+        if (keyword.isBlank() && ipcCode.isBlank()) {
+            keywordcounts.addAll(keywordcountReopsitory.find_all());
+            model.addAttribute("keyword", keywordcounts);
+
+        }
+
+        else if (!keyword.isBlank() && ipcCode.isBlank()) {
+            System.out.println("search by keyword");
+            keywordcounts.addAll(keywordcountReopsitory.findByKeyword(keyword));
+            model.addAttribute("keyword", keywordcounts);
+
+        }
+
+        else if (keyword.isBlank() && !ipcCode.isBlank()) {
+            System.out.println("search by ipc code");
+            keywordcounts.addAll(keywordcountReopsitory.findByIpcCode(ipcCode));
+            model.addAttribute("keyword", keywordcounts);
+
+        } else {
+            System.out.println("test success");
+
+            keywordcounts.addAll(keywordcountReopsitory.find_all());
+            model.addAttribute("keyword", keywordcounts);
+
+        }
+
+        return "ipcpage";
+
+    }
+
+    @Autowired
+    private final OrganizationRepository organizationRepository;
+
+    @GetMapping("/organization")
+    public String organization(@RequestParam(value = "ipcCode", required = false, defaultValue = "") String ipcCode,
+            Model model) {
+        List<Organization> organizations = new ArrayList<>();
+        organizations.addAll(organizationRepository.findByCode(ipcCode));
+        model.addAttribute("organization", organizations);
+
+        return "testpage2";
+
+    }
+
+    @Autowired
+    private final IPCtitleRepository ipCtitleRepository;
+
+    @GetMapping("/ipctitle")
+    public String ipctitle(@RequestParam(value = "ipcCode", required = false, defaultValue = "") String ipcCode,
+            Model model) {
+        List<IPCtitle> ipCtitles = new ArrayList<>();
+        ipCtitles.addAll(ipCtitleRepository.findByCode(ipcCode));
+        model.addAttribute("ipctitle", ipCtitles);
+
+        return "ipc_title";
+    }
+
+    @GetMapping("top_trend")
+    public String top_trend(Model model) {
+        List<Trendscore> trendscores = new ArrayList<>();
+
+        trendscores.addAll(trendscoreRepository.find_all());
+        model.addAttribute("top_trend", trendscores);
+
+        return "top_trend";
+    }
+
+    //////// youtube 검색 부분 추가
+
+    @GetMapping("/youtube_search")
+    public String youtubesearch(@ModelAttribute(value = "query") FormDTO formDTO) {
+
+        return "youtube_search";
+    }
+
+    @PostMapping("/youtube_result")
+    public String youtuberesult(@ModelAttribute(value = "query") FormDTO formDTO, Model model) {
+
+        String kw = formDTO.getKeyword();
+
+        Iterator<SearchResult> searchResultIterator = YoutubeAPI.getVideoId(kw);
+        List<YoutubeDTO> youtubeDTOList = new ArrayList<>();
+
+        while (searchResultIterator.hasNext()) {
+
+            YoutubeDTO youtubeDTO = new YoutubeDTO();
+            youtubeDTO.setKeyword(kw);
+            SearchResult singleVideo = searchResultIterator.next();
+            ResourceId rId = singleVideo.getId();
+            youtubeDTO.setVideoId(rId.getVideoId());
+            youtubeDTO.setTitle(singleVideo.getSnippet().getTitle());
+            Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
+            youtubeDTO.setThumbnailPath(thumbnail.getUrl());
+
+            youtubeDTOList.add(youtubeDTO);
+        }
+
+        model.addAttribute("youtubes", youtubeDTOList);
+
+        return "youtube_result";
+    }
+
+    // News 검색 부분 추가
+    @GetMapping("/news_search")
+    public String news_search(Model model) {
+
+        model.addAttribute("query", new FormDTO());
+
+        return "news_search";
+    }
+
+    @PostMapping("/news_result")
+    public String news_result(@ModelAttribute(value = "query") FormDTO formDTO, Model model) {
+        List<NavernewsDTO> navernewsDTOList = new ArrayList<>();
+
+        JSONArray items = Navernews.getJson(formDTO.getKeyword());
+
+        for (int i = 0; i < items.length(); i++) {
+
+            NavernewsDTO navernewsDTO = new NavernewsDTO();
+            JSONObject obj = items.getJSONObject(i);
+            String title = obj.getString("title");
+            String link = obj.getString("link");
+
+            navernewsDTO.setTitle(title);
+            navernewsDTO.setLink(link);
+
+            navernewsDTOList.add(navernewsDTO);
+
+            System.out.println(title);
+            System.out.println(link);
+        }
+
+        model.addAttribute("news", navernewsDTOList);
 
         return "news_result";
     }
+
     // 꺾은선 그래프용 데이터
-    @Autowired
-    private final IPChistoryRepository ipchistoryRepository;
 
     @GetMapping("ipc_history")
-    public String ipc_history(@RequestParam(value = "ipcCode")String ipcCode, Model model){
+    public String ipc_history(@RequestParam(value = "ipcCode") String ipcCode, Model model) {
         List<IPChistory> ipchistoryList = new ArrayList<>();
 
         ipchistoryList.addAll(ipchistoryRepository.findByCode(ipcCode));
         model.addAttribute("ipc_history", ipchistoryList);
-        model.addAttribute("ipc_code",ipcCode);
+        model.addAttribute("ipc_code", ipcCode);
 
         return "ipc_history";
     }
 
+    // 사이드 메뉴 (IPC section 부분)
+    @GetMapping("/A_section") // A_section
+    public String A_section(Model model) {
+        // model.addAttribute("list",postsRepository.postall());
+        return "A_section";
 
-
-    @GetMapping("/keyword_detail") //키워드 관련 기사, 유튜브화면 
-    public String keyword_detail(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-        return "keyword_detail"; 
- 
     }
 
+    @GetMapping("/B_section") // B_section
+    public String B_section(Model model) {
+        // model.addAttribute("list",postsRepository.postall());
+        return "B_section";
 
-    @GetMapping("/viewall")
-    public String viewAll(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-
-        //return "demo_show";
-        return "chart01"; //예시 워드 클라우드뷰
     }
 
-    @GetMapping("/A_section") //A_section
-    public String A_section(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-        return "A_section"; 
- 
+    @GetMapping("/C_section") // C_section
+    public String C_section(Model model) {
+        // model.addAttribute("list",postsRepository.postall());
+        return "C_section";
+
     }
 
-    @GetMapping("/B_section") //B_section
-    public String B_section(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-        return "B_section"; 
- 
+    @GetMapping("/D_section") // D_section
+    public String D_section(Model model) {
+        // model.addAttribute("list",postsRepository.postall());
+        return "D_section";
+
     }
 
-    @GetMapping("/C_section") //C_section
-    public String C_section(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-        return "C_section"; 
- 
+    @GetMapping("/E_section") // E_section
+    public String E_section(Model model) {
+        // model.addAttribute("list",postsRepository.postall());
+        return "E_section";
+
     }
 
-    @GetMapping("/D_section") //D_section
-    public String D_section(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-        return "D_section"; 
- 
+    @GetMapping("/F_section") // F_section
+    public String F_section(Model model) {
+        // model.addAttribute("list",postsRepository.postall());
+        return "F_section";
+
     }
 
-    @GetMapping("/E_section") //E_section
-    public String E_section(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-        return "E_section"; 
- 
+    @GetMapping("/G_section") // G_section
+    public String G_section(Model model) {
+        // model.addAttribute("list",postsRepository.postall());
+        return "G_section";
+
     }
 
-    @GetMapping("/F_section") //F_section
-    public String F_section(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-        return "F_section"; 
- 
+    @GetMapping("/H_section") // H_section
+    public String H_section(Model model) {
+        // model.addAttribute("list",postsRepository.postall());
+        return "H_section";
+
     }
 
-    @GetMapping("/G_section") //G_section
-    public String G_section(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-        return "G_section"; 
- 
+    @GetMapping("/Y_section") // Y_section
+    public String Y_section(Model model) {
+        // model.addAttribute("list",postsRepository.postall());
+        return "Y_section";
+
     }
 
-    @GetMapping("/H_section") //H_section
-    public String H_section(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-        return "H_section"; 
- 
-    }
-
-    @GetMapping("/Y_section") //Y_section
-    public String Y_section(Model model){
-        //model.addAttribute("list",postsRepository.postall());
-        return "Y_section"; 
- 
-    }
-
-    //2022-06-06 윤선희
-    //탬플릿 추가
+    // 2022-06-06 윤선희
+    // 탬플릿 추가
 }
