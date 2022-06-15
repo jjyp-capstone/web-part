@@ -83,7 +83,7 @@
             var data1 = {};
             var dataArray = [];
             [# th:each="h : ${ipc_history}"  th:if="${h.ipc_code == param1}" ] //반복문으로 리스트 값 받아오기
-                data1.x = [[${h.date}]];     //변수 받기
+                data1.x = [[${h._date}]];     //변수 받기
                 data1.value = [[${h.count}]];
                 dataArray.push({...data1});         //json형식으로 데이터 추가하기 위해서
                 //console.log(JSON.stringify(dataArray));
@@ -100,9 +100,9 @@
 
             // set the titles of the axes
             var xAxis = chart.xAxis();
-            xAxis.title("Month");
+            //xAxis.title("Month");
             var yAxis = chart.yAxis();
-            yAxis.title("Sales, $");
+            //yAxis.title("Sales, $");
 
             // set the container id
             chart.container("container_line");

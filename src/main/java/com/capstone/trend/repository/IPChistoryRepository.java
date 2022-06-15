@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface IPChistoryRepository extends JpaRepository<IPChistory, Long> {
 
-    @Query(value = "select id, date, count, ipc_code from ipc_history where ipc_code =:ipcCode", nativeQuery = true)
+    @Query(value = "select id, _date, count, ipc_code from ipc_history where ipc_code =:ipcCode", nativeQuery = true)
     List<IPChistory> findByCode(@Param("ipcCode") String ipcCode);
 }

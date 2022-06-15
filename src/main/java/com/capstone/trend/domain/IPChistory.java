@@ -20,8 +20,8 @@ public class IPChistory {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "date")
-    private String date;
+    @Column(name = "_date")
+    private String _date;
 
     @Column(name = "count")
     private Integer count;

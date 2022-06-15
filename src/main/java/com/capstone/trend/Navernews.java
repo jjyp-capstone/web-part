@@ -14,20 +14,20 @@ import java.util.Map;
 public class Navernews {
 
     public static void main(String[] args) {
-        String clientId = "_KnaGSuC4ibWCvuPAqAq"; // ¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ°ª"
-        String clientSecret = "jc9mDHNEJZ"; // ¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´°ª"
+        String clientId = "_KnaGSuC4ibWCvuPAqAq"; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””ê°’"
+        String clientSecret = "jc9mDHNEJZ"; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿ê°’"
 
         String text = null;
         try {
-            text = URLEncoder.encode("½ºÆå", "UTF-8");
+            text = URLEncoder.encode("ìŠ¤í™", "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("°Ë»ö¾î ÀÎÄÚµù ½ÇÆĞ", e);
+            throw new RuntimeException("ê²€ìƒ‰ì–´ ì¸ì½”ë”© ì‹¤íŒ¨", e);
         }
 
         String apiURL = "https://openapi.naver.com/v1/search/news?query=" + text + "&display=5&start=1&sort=sim"; // json
-                                                                                                                  // °á°ú
+        // ê²°ê³¼
         // String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text;
-        // // xml °á°ú
+        // // xml ê²°ê³¼
 
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("X-Naver-Client-Id", clientId);
@@ -37,20 +37,20 @@ public class Navernews {
     }
 
     public static JSONArray getJson(String query) {
-        String clientId = "_KnaGSuC4ibWCvuPAqAq"; // ¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ°ª"
-        String clientSecret = "jc9mDHNEJZ"; // ¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´°ª"
+        String clientId = "_KnaGSuC4ibWCvuPAqAq"; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””ê°’"
+        String clientSecret = "jc9mDHNEJZ"; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿ê°’"
 
         String text = null;
         try {
             text = URLEncoder.encode(query, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("°Ë»ö¾î ÀÎÄÚµù ½ÇÆĞ", e);
+            throw new RuntimeException("ê²€ìƒ‰ì–´ ì¸ì½”ë”© ì‹¤íŒ¨", e);
         }
 
         String apiURL = "https://openapi.naver.com/v1/search/news?query=" + text + "&display=5&start=1&sort=sim"; // json
-                                                                                                                  // °á°ú
+        // ê²°ê³¼
         // String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text;
-        // // xml °á°ú
+        // // xml ê²°ê³¼
 
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("X-Naver-Client-Id", clientId);
@@ -83,13 +83,13 @@ public class Navernews {
             }
 
             int responseCode = con.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) { // Á¤»ó È£Ãâ
+            if (responseCode == HttpURLConnection.HTTP_OK) { // ì •ìƒ í˜¸ì¶œ
                 return readBody(con.getInputStream());
-            } else { // ¿¡·¯ ¹ß»ı
+            } else { // ì—ëŸ¬ ë°œìƒ
                 return readBody(con.getErrorStream());
             }
         } catch (IOException e) {
-            throw new RuntimeException("API ¿äÃ»°ú ÀÀ´ä ½ÇÆĞ", e);
+            throw new RuntimeException("API ìš”ì²­ê³¼ ì‘ë‹µ ì‹¤íŒ¨", e);
         } finally {
             con.disconnect();
         }
@@ -100,9 +100,9 @@ public class Navernews {
             URL url = new URL(apiUrl);
             return (HttpURLConnection) url.openConnection();
         } catch (MalformedURLException e) {
-            throw new RuntimeException("API URLÀÌ Àß¸øµÇ¾ú½À´Ï´Ù. : " + apiUrl, e);
+            throw new RuntimeException("API URLì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. : " + apiUrl, e);
         } catch (IOException e) {
-            throw new RuntimeException("¿¬°áÀÌ ½ÇÆĞÇß½À´Ï´Ù. : " + apiUrl, e);
+            throw new RuntimeException("ì—°ê²°ì´ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. : " + apiUrl, e);
         }
     }
 
@@ -119,7 +119,7 @@ public class Navernews {
 
             return responseBody.toString();
         } catch (IOException e) {
-            throw new RuntimeException("API ÀÀ´äÀ» ÀĞ´Âµ¥ ½ÇÆĞÇß½À´Ï´Ù.", e);
+            throw new RuntimeException("API ì‘ë‹µì„ ì½ëŠ”ë° ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.", e);
         }
     }
 }
