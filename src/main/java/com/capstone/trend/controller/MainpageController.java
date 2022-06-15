@@ -15,6 +15,7 @@ import com.google.api.services.youtube.model.Thumbnail;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -144,12 +145,14 @@ public class MainpageController {
             String title = obj.getString("title");
             String link = obj.getString("link");
 
-            navernewsDTO.setTitle(title);
+            String paresed_title = Jsoup.parse(title).text();
+
+            navernewsDTO.setTitle(paresed_title);
             navernewsDTO.setLink(link);
 
             navernewsDTOList.add(navernewsDTO);
 
-            System.out.println(title);
+            System.out.println(paresed_title);
             System.out.println(link);
         }
 
@@ -322,14 +325,16 @@ public class MainpageController {
             NavernewsDTO navernewsDTO = new NavernewsDTO();
             JSONObject obj = items.getJSONObject(i);
             String title = obj.getString("title");
+
+            String paresed_title = Jsoup.parse(title).text();
             String link = obj.getString("link");
 
-            navernewsDTO.setTitle(title);
+            navernewsDTO.setTitle(paresed_title);
             navernewsDTO.setLink(link);
 
             navernewsDTOList.add(navernewsDTO);
 
-            System.out.println(title);
+            System.out.println(paresed_title);
             System.out.println(link);
         }
 
